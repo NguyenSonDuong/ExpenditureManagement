@@ -8,5 +8,54 @@ public class ThongTinChiTieu {
     private String ghiChuGiaoDich;
     private String thoiGianGiaoDich;
 
+    public ThongTinChiTieu() {
+    }
 
+    public ThongTinChiTieu(int id, double soTien, String loaiGiaoDich, String ghiChuGiaoDich, String thoiGianGiaoDich) {
+        this.id = id;
+        this.soTien = soTien;
+        this.loaiGiaoDich = loaiGiaoDich;
+        this.ghiChuGiaoDich = ghiChuGiaoDich;
+        this.thoiGianGiaoDich = thoiGianGiaoDich;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public double getSoTien() {
+        return soTien;
+    }
+
+    public void setSoTien(double soTien) {
+        this.soTien = soTien;
+    }
+
+    public String getLoaiGiaoDich() {
+        return loaiGiaoDich;
+    }
+
+    public void setLoaiGiaoDich(String loaiGiaoDich) {
+        this.loaiGiaoDich = loaiGiaoDich;
+    }
+
+    public String getGhiChuGiaoDich() {
+        return ghiChuGiaoDich;
+    }
+
+    public void setGhiChuGiaoDich(String ghiChuGiaoDich) {
+        this.ghiChuGiaoDich = ghiChuGiaoDich;
+    }
+
+    public String getThoiGianGiaoDich() {
+        return thoiGianGiaoDich;
+    }
+
+    public void setThoiGianGiaoDich(String thoiGianGiaoDich) {
+        this.thoiGianGiaoDich = thoiGianGiaoDich;
+    }
 }

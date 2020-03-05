@@ -6,6 +6,7 @@ public class ThongTinVayTra {
     private double soTienVay;
     private double soTienTra;
     private String nguoiGiaoDich;
+    private String loaiGiaoDich;
     private String ghiChuGiaoDich;
     private String thoiGianGiaoDich;
     private float laiSuat;
@@ -14,16 +15,18 @@ public class ThongTinVayTra {
     public ThongTinVayTra() {
     }
 
-    public ThongTinVayTra(int id, double soTienVay, double soTienTra, String nguoiGiaoDich, String ghiChuGiaoDich, String thoiGianGiaoDich, float laiSuat, String trangThai) {
+    public ThongTinVayTra(int id, double soTienVay, double soTienTra, String nguoiGiaoDich, String loaiGiaoDich, String ghiChuGiaoDich, String thoiGianGiaoDich, float laiSuat, String trangThai) {
         this.id = id;
         this.soTienVay = soTienVay;
         this.soTienTra = soTienTra;
         this.nguoiGiaoDich = nguoiGiaoDich;
+        this.loaiGiaoDich = loaiGiaoDich;
         this.ghiChuGiaoDich = ghiChuGiaoDich;
         this.thoiGianGiaoDich = thoiGianGiaoDich;
         this.laiSuat = laiSuat;
         this.trangThai = trangThai;
     }
+
 
     public int getId() {
         return id;
@@ -87,5 +90,13 @@ public class ThongTinVayTra {
 
     public void setTrangThai(String trangThai) {
         this.trangThai = trangThai;
+    }
+
+    public String getLoaiGiaoDich() {
+        return loaiGiaoDich;
+    }
+
+    public void setLoaiGiaoDich(String loaiGiaoDich) {
+        this.loaiGiaoDich = loaiGiaoDich;
     }
 }
