@@ -2,7 +2,7 @@ package com.group1.LopCSDL;
 
 import android.content.Context;
 
-public class HoTroXuLyDB {
+public class HoTroXuLyDataBase {
     public static void ttNguoiDung(XuLyDatabase xuLyDatabase,Context context,String namedatabase){
         if(xuLyDatabase == null){
             xuLyDatabase = new XuLyDatabase(context, namedatabase, null, 1);
@@ -27,7 +27,8 @@ public class HoTroXuLyDB {
                 "soTien DOUBLE, " +
                 "loaiGiaoDich VARCHAR(200), " +
                 "ghiChuGiaoDich VARCHAR(150), " +
-                "ngayGiaoDich DATETIME)");
+                "thoiGianGiaoDich DATETIME, " +
+                "diaDiem VARCHAR(200))");
     }
 
     public static void ttVayTra(XuLyDatabase xuLyDatabase,Context context,String namedatabase){

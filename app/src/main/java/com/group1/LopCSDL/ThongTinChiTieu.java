@@ -7,16 +7,18 @@ public class ThongTinChiTieu {
     private String loaiGiaoDich;
     private String ghiChuGiaoDich;
     private String thoiGianGiaoDich;
+    private String diaDiem;
 
     public ThongTinChiTieu() {
     }
 
-    public ThongTinChiTieu(int id, double soTien, String loaiGiaoDich, String ghiChuGiaoDich, String thoiGianGiaoDich) {
+    public ThongTinChiTieu(int id, double soTien, String loaiGiaoDich, String ghiChuGiaoDich, String thoiGianGiaoDich, String diaDiem) {
         this.id = id;
         this.soTien = soTien;
         this.loaiGiaoDich = loaiGiaoDich;
         this.ghiChuGiaoDich = ghiChuGiaoDich;
         this.thoiGianGiaoDich = thoiGianGiaoDich;
+        this.diaDiem = diaDiem;
     }
 
     public int getId() {
@@ -57,5 +59,13 @@ public class ThongTinChiTieu {
 
     public void setThoiGianGiaoDich(String thoiGianGiaoDich) {
         this.thoiGianGiaoDich = thoiGianGiaoDich;
+    }
+
+    public String getDiaDiem() {
+        return diaDiem;
+    }
+
+    public void setDiaDiem(String diaDiem) {
+        this.diaDiem = diaDiem;
     }
 }
