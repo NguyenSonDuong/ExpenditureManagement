@@ -18,7 +18,7 @@ public class HoTroXuLyDB {
         //xuLyDatabase.traVeKQ("SELECT * FROM NguoiDung Where ");
     }
 
-    public void ttChiTieu(XuLyDatabase xuLyDatabase,Context context,String namedatabase){
+    public static void ttChiTieu(XuLyDatabase xuLyDatabase,Context context,String namedatabase){
         if(xuLyDatabase == null){
             xuLyDatabase = new XuLyDatabase(context, namedatabase, null, 1);
         }
@@ -30,7 +30,7 @@ public class HoTroXuLyDB {
                 "ngayGiaoDich DATETIME)");
     }
 
-    public void ttVayTra(XuLyDatabase xuLyDatabase,Context context,String namedatabase){
+    public static void ttVayTra(XuLyDatabase xuLyDatabase,Context context,String namedatabase){
         if(xuLyDatabase == null){
             xuLyDatabase = new XuLyDatabase(context, namedatabase, null, 1);
         }
