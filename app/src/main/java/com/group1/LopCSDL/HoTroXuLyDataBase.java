@@ -54,7 +54,7 @@ public class HoTroXuLyDataBase {
 
         SQLiteStatement sqLiteStatement = xuLyDatabase.getWritableDatabase().compileStatement(themDLND);
 
-        //xóa đi phần tử đã có dl
+        //xóa đi phần đã phân tích dl
         sqLiteStatement.clearBindings();
 
         sqLiteStatement.bindString(1, nickName);
