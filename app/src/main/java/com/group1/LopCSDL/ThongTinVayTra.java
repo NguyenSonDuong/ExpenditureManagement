@@ -9,13 +9,21 @@ public class ThongTinVayTra {
     private String loaiGiaoDich;
     private String ghiChuGiaoDich;
     private String thoiGianGiaoDich;
+<<<<<<< HEAD
     private float laiSuat;
+=======
+    private double laiSuat;
+>>>>>>> c24cf1a70906cb14cb882e393002a845aa71bd0c
     private String trangThai;
 
     public ThongTinVayTra() {
     }
 
+<<<<<<< HEAD
     public ThongTinVayTra(int id, double soTienVay, double soTienTra, String nguoiGiaoDich, String loaiGiaoDich, String ghiChuGiaoDich, String thoiGianGiaoDich, float laiSuat, String trangThai) {
+=======
+    public ThongTinVayTra(int id, double soTienVay, double soTienTra, String nguoiGiaoDich, String loaiGiaoDich, String ghiChuGiaoDich, String thoiGianGiaoDich, double laiSuat, String trangThai) {
+>>>>>>> c24cf1a70906cb14cb882e393002a845aa71bd0c
         this.id = id;
         this.soTienVay = soTienVay;
         this.soTienTra = soTienTra;
@@ -76,11 +84,19 @@ public class ThongTinVayTra {
         this.thoiGianGiaoDich = thoiGianGiaoDich;
     }
 
+<<<<<<< HEAD
     public float getLaiSuat() {
         return laiSuat;
     }
 
     public void setLaiSuat(float laiSuat) {
+=======
+    public double getLaiSuat() {
+        return laiSuat;
+    }
+
+    public void setLaiSuat(double laiSuat) {
+>>>>>>> c24cf1a70906cb14cb882e393002a845aa71bd0c
         this.laiSuat = laiSuat;
     }
 

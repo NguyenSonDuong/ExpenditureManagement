@@ -1,5 +1,6 @@
 package com.group1.LopCSDL;
 
+<<<<<<< HEAD
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class ThongTinNguoiDung {
@@ -9,11 +10,24 @@ public class ThongTinNguoiDung {
     private String ngaySinh;
     private String passWordl;
     private String Create_time;
+=======
+public class ThongTinNguoiDung {
+    private String nickName;
+    private String email;
+    private double gioiTinh;
+    private String ngaySinh;
+    private String passWordl;
+    private LopCreat_Time Create_time;
+>>>>>>> c24cf1a70906cb14cb882e393002a845aa71bd0c
 
     public ThongTinNguoiDung() {
     }
 
+<<<<<<< HEAD
     public ThongTinNguoiDung(String nickName, String email, int gioiTinh, String ngaySinh, String passWordl, String create_time) {
+=======
+    public ThongTinNguoiDung(String nickName, String email, double gioiTinh, String ngaySinh, String passWordl, LopCreat_Time create_time) {
+>>>>>>> c24cf1a70906cb14cb882e393002a845aa71bd0c
         this.nickName = nickName;
         this.email = email;
         this.gioiTinh = gioiTinh;
@@ -38,11 +52,19 @@ public class ThongTinNguoiDung {
         this.email = email;
     }
 
+<<<<<<< HEAD
     public int getGioiTinh() {
         return gioiTinh;
     }
 
     public void setGioiTinh(int gioiTinh) {
+=======
+    public double getGioiTinh() {
+        return gioiTinh;
+    }
+
+    public void setGioiTinh(double gioiTinh) {
+>>>>>>> c24cf1a70906cb14cb882e393002a845aa71bd0c
         this.gioiTinh = gioiTinh;
     }
 
@@ -62,11 +84,19 @@ public class ThongTinNguoiDung {
         this.passWordl = passWordl;
     }
 
+<<<<<<< HEAD
     public String getCreate_time() {
         return Create_time;
     }
 
     public void setCreate_time(String create_time) {
+=======
+    public LopCreat_Time getCreate_time() {
+        return Create_time;
+    }
+
+    public void setCreate_time(LopCreat_Time create_time) {
+>>>>>>> c24cf1a70906cb14cb882e393002a845aa71bd0c
         Create_time = create_time;
     }
 }
