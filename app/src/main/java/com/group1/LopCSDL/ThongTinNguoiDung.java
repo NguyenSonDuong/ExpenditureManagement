@@ -1,19 +1,17 @@
 package com.group1.LopCSDL;
 
-import android.database.sqlite.SQLiteOpenHelper;
-
 public class ThongTinNguoiDung {
     private String nickName;
     private String email;
-    private int gioiTinh;
+    private double gioiTinh;
     private String ngaySinh;
     private String passWordl;
-    private String Create_time;
+    private LopCreat_Time Create_time;
 
     public ThongTinNguoiDung() {
     }
 
-    public ThongTinNguoiDung(String nickName, String email, int gioiTinh, String ngaySinh, String passWordl, String create_time) {
+    public ThongTinNguoiDung(String nickName, String email, double gioiTinh, String ngaySinh, String passWordl, LopCreat_Time create_time) {
         this.nickName = nickName;
         this.email = email;
         this.gioiTinh = gioiTinh;
@@ -38,11 +36,11 @@ public class ThongTinNguoiDung {
         this.email = email;
     }
 
-    public int getGioiTinh() {
+    public double getGioiTinh() {
         return gioiTinh;
     }
 
-    public void setGioiTinh(int gioiTinh) {
+    public void setGioiTinh(double gioiTinh) {
         this.gioiTinh = gioiTinh;
     }
 
@@ -62,11 +60,11 @@ public class ThongTinNguoiDung {
         this.passWordl = passWordl;
     }
 
-    public String getCreate_time() {
+    public LopCreat_Time getCreate_time() {
         return Create_time;
     }
 
-    public void setCreate_time(String create_time) {
+    public void setCreate_time(LopCreat_Time create_time) {
         Create_time = create_time;
     }
 }

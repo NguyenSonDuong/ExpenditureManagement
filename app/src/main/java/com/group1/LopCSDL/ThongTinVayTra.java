@@ -9,13 +9,13 @@ public class ThongTinVayTra {
     private String loaiGiaoDich;
     private String ghiChuGiaoDich;
     private String thoiGianGiaoDich;
-    private float laiSuat;
+    private double laiSuat;
     private String trangThai;
 
     public ThongTinVayTra() {
     }
 
-    public ThongTinVayTra(int id, double soTienVay, double soTienTra, String nguoiGiaoDich, String loaiGiaoDich, String ghiChuGiaoDich, String thoiGianGiaoDich, float laiSuat, String trangThai) {
+    public ThongTinVayTra(int id, double soTienVay, double soTienTra, String nguoiGiaoDich, String loaiGiaoDich, String ghiChuGiaoDich, String thoiGianGiaoDich, double laiSuat, String trangThai) {
         this.id = id;
         this.soTienVay = soTienVay;
         this.soTienTra = soTienTra;
@@ -76,11 +76,11 @@ public class ThongTinVayTra {
         this.thoiGianGiaoDich = thoiGianGiaoDich;
     }
 
-    public float getLaiSuat() {
+    public double getLaiSuat() {
         return laiSuat;
     }
 
-    public void setLaiSuat(float laiSuat) {
+    public void setLaiSuat(double laiSuat) {
         this.laiSuat = laiSuat;
     }
 
