@@ -62,7 +62,7 @@ public class HoTroXuLyDataBase {
         sqLiteStatement.bindDouble(3, gioiTinh);
         sqLiteStatement.bindString(4, ngaySinh);
         sqLiteStatement.bindString(5, passWordl);
-        sqLiteStatement.bindString(6,  Create_time);
+        sqLiteStatement.bindString(6,  LopCreat_Time.TongHopThoiGian());
 
         sqLiteStatement.executeInsert();
 
