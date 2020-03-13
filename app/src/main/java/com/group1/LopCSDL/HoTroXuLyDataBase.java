@@ -33,7 +33,8 @@ public class HoTroXuLyDataBase {
                 "loaiGiaoDich VARCHAR(200), " +
                 "ghiChuGiaoDich VARCHAR(150), " +
                 "thoiGianGiaoDich DATETIME, " +
-                "diaDiem VARCHAR(200))");
+                "diaDiem VARCHAR(200), " +
+                "soLuong INTERGER)");
     }
 
     public static void ttVayTra(XuLyDatabase xuLyDatabase,Context context,String namedatabase){
@@ -51,10 +52,5 @@ public class HoTroXuLyDataBase {
                 "laiSuat FLOAT, " +
                 "trangThai VARCHAR(100))");
     }
-
-
-
-
-
 
 }
