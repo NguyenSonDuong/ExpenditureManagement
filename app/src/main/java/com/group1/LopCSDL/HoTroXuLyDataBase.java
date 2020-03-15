@@ -40,6 +40,7 @@ public class HoTroXuLyDataBase {
         xuLyDatabase.khongTraKQ("CREATE TABLE IF NOT EXISTS VayTra (ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "soTienVay DOUBLE, " +
                 "soTienTra DOUBLE, " +
+                "hantra DATETIME"+
                 "nguoiGiaoDich VARCHAR(100), " +
                 "loaiGiaoDich VARCHAR(200), " +
                 "ghiChuGiaoDich VARCHAR(100), " +
