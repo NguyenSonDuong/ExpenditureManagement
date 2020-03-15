@@ -8,7 +8,11 @@ import android.database.sqlite.SQLiteStatement;
 public class HoTroXuLyDataBase {
 
     int tam = 0;
-    public static void ttNguoiDung(XuLyDatabase xuLyDatabase,Context context,String namedatabase){
+
+    public HoTroXuLyDataBase() {
+    }
+
+    public static void ttNguoiDung(XuLyDatabase xuLyDatabase, Context context, String namedatabase){
         if(xuLyDatabase == null){
             xuLyDatabase = new XuLyDatabase(context, namedatabase, null, 1);
         }
@@ -16,7 +20,7 @@ public class HoTroXuLyDataBase {
                 "Email VARCHAR(200), " +
                 "GioiTinh INTEGER, " +
                 "ngaySinh DATETIME, " +
-                "PassWordl VARCAR(100), " +
+                "PassWord VARCAR(100), " +
                 "Create_time DATETIME)");
 
         //xuLyDatabase.traVeKQ("INSERT INTO NguoiDung VALUES()");
