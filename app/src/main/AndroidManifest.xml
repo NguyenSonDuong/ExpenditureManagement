@@ -12,8 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Dang_Ky"></activity>
-        <activity android:name=".DangNhap" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" />
+        <activity android:name=".DangNhap">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
