@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
     android:orientation="vertical"
     android:background="@color/background"
     android:gravity="center">
@@ -44,9 +43,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:background="@drawable/background_vien"
+            android:background="@drawable/vien"
             android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp">
+            android:layout_marginLeft="20dp"
+            android:id="@+id/edit_nickname">
 
         </EditText>
 
@@ -65,11 +65,12 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/background_vien"
+            android:background="@drawable/vien"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
             android:textSize="15sp"
-            android:textStyle="bold">
+            android:textStyle="bold"
+            android:id="@+id/edit_password">
 
         </EditText>
 
@@ -77,11 +78,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Đăng Nhập"
-            android:background="@drawable/background_vien"
+            android:background="@drawable/vien"
             android:textStyle="bold"
             android:textSize="15sp"
             android:textColor="@color/dang_nhap"
-            android:layout_marginTop="15dp">
+            android:layout_marginTop="15dp"
+            android:id="@+id/bt_dangnhap">
 
         </Button>
 
@@ -91,10 +93,11 @@
             android:layout_height="wrap_content"
             android:text="Quên mật khẩu?"
             android:textColor="@color/dang_nhap"
-            android:background="@drawable/background_vien"
+            android:background="@drawable/vien"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="15dp">
+            android:layout_marginTop="15dp"
+            android:id="@+id/bt_quenmatkhau">
         </Button>
     </LinearLayout>
 
@@ -124,7 +127,8 @@
             android:textColor="@color/dang_nhap"
             android:textStyle="bold"
             android:layout_marginBottom="50dp"
-            android:background="@drawable/background_vien">
+            android:background="@drawable/vien"
+            android:id="@+id/bt_taotaikhoan">
 
         </Button>
     </LinearLayout>
