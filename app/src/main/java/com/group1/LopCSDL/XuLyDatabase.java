@@ -14,16 +14,12 @@ public class XuLyDatabase extends SQLiteOpenHelper {
     }
 
     public void khongTraKQ(String kq){
-        SQLiteDatabase database = getWritableDatabase();
-
+        SQLiteDatabase database = getWritableDatabase(); // UPDATE-INSER-DELETE
         database.execSQL(kq);
-
     }
 
     public Cursor traVeKQ(String kq){
-
-        SQLiteDatabase database = getReadableDatabase();
-
+        SQLiteDatabase database = getReadableDatabase(); // SELECT
         return database.rawQuery(kq, null);
     }
 
