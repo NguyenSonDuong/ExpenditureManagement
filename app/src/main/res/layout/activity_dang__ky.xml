@@ -42,6 +42,7 @@
             android:id="@+id/edtnhapTenTK"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:paddingHorizontal="10dp"
             android:background="@drawable/label_tron"
             android:hint="Nhập email hoặc số điện thoại"
             android:textSize="12dp"
@@ -74,6 +75,7 @@
             android:background="@drawable/label_tron"
             android:inputType="textPassword"
             android:textSize="12dp"
+            android:paddingHorizontal="10dp"
             android:textColor="#000">
 
         </EditText>
@@ -103,6 +105,7 @@
             android:background="@drawable/label_tron"
             android:inputType="textPassword"
             android:textSize="12dp"
+            android:paddingHorizontal="10dp"
             android:textColor="#000">
 
         </EditText>
@@ -130,7 +133,8 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="@drawable/label_tron"
-            android:hint="textPassword"
+            android:hint="Nhập email"
+            android:paddingHorizontal="10dp"
             android:textSize="12dp"
             android:textColor="#000">
 
@@ -161,6 +165,8 @@
                 android:id="@+id/rdgNam"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:buttonTint="#ECECEC"
+                android:textColor="#ECECEC"
                 android:text="Nam">
 
             </RadioButton>
@@ -169,25 +175,19 @@
                 android:id="@+id/rdgNu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:buttonTint="#ECECEC"
+                android:textColor="#ECECEC"
                 android:text="Nữ">
 
             </RadioButton>
         </RadioGroup>
     </LinearLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:text="Bằng cách nhấp vào Đăng ký, bạn đồng ý với Điều khoản, Chính sách dữ liệu và Chính sách cookie của chúng tôi. Bạn có thể nhận được thông báo của chúng tôi qua SMS và hủy nhận bất kỳ lúc nào."
-        android:textSize="10dp">
-
-    </TextView>
     <CheckBox
         android:id="@+id/checkeddk"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
+        android:textColor="#ECECEC"
         android:layout_marginRight="20dp"
         android:text="Đồng ý với điều khoản và chính sách của ứng dụng">
 
@@ -198,9 +198,10 @@
         android:layout_width="105dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="#FFF"
+        android:background="@drawable/label_tron"
         android:text="ĐĂNG KÝ"
         android:textColor="#FF5722"
+        android:layout_marginTop="20dp"
         android:textSize="15dp"
         android:textStyle="bold"
 

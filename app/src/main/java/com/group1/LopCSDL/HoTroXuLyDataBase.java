@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.group1.expendituremanagement.DangNhap;
@@ -73,6 +74,64 @@ public class HoTroXuLyDataBase {
                 "thoiGianGiaoDich DATETIME, " +
                 "laiSuat FLOAT, " +
                 "trangThai VARCHAR(100))");
+    }
+    public static boolean registerUserSQLLite(XuLyDatabase xuLyDatabase, String nickName, String passWordl, String email, int gioiTinh, String ngaySinh){
+        String themDLND = "INSERT INTO "+KeyDatabase.TABLENAME_NGUOIDUNG+" VALUES(?, ?, ?, ?, ? ,?)";
+        try{
+            SQLiteStatement sqLiteStatement = xuLyDatabase.getWritableDatabase().compileStatement(themDLND);
+            //xóa đi phần đã phân tích dl
+            sqLiteStatement.clearBindings();
+            sqLiteStatement.bindString(1, nickName);
+            sqLiteStatement.bindString(2, email);
+            sqLiteStatement.bindDouble(3, (double) gioiTinh);
+            sqLiteStatement.bindString(4, ngaySinh);
+            sqLiteStatement.bindString(5, passWordl);
+            sqLiteStatement.bindString(6,  LopCreat_Time.TongHopThoiGian());
+            sqLiteStatement.executeInsert();
+            return true;
+        }catch (Exception ex){
+            Log.d("REGISTERUSERSQLLITE", "registerUserSQLLite: "+ex.getMessage());
+            return false;
+        }
+
+
+    }
+
+    public static void themDLChiTieu(XuLyDatabase xuLyDatabase, int id, double soTien, String loaiGiaoDich, String ghiChuGiaoDich, String thoiGianGiaoDich, String diaDiem){
+
+        String themDLChiTieu = "INSERT INTO "+KeyDatabase.TABLENAME_CHITIEU+" VALUES (NULL, ?, ?, ?, ?, ?)";
+
+        SQLiteStatement sqLiteStatement = xuLyDatabase.getWritableDatabase().compileStatement(themDLChiTieu);
+
+        sqLiteStatement.clearBindings();
+
+        sqLiteStatement.bindDouble(1, soTien);
+        sqLiteStatement.bindString(2, loaiGiaoDich);
+        sqLiteStatement.bindString(3, ghiChuGiaoDich);
+        sqLiteStatement.bindString(4, thoiGianGiaoDich);
+        sqLiteStatement.bindString(5, diaDiem);
+
+        sqLiteStatement.executeInsert();
+    }
+
+    public static void themDLVayTra(XuLyDatabase xuLyDatabase, int id, double soTienVay, double soTienTra, String nguoiGiaoDich, String loaiGiaoDich, String ghiChuGiaoDich, String thoiGianGiaoDich, float laiSuat, String trangThai){
+
+        String themDLVayTra = "INSERT INTO "+KeyDatabase.TABLENAME_CHITIEU+" VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+        SQLiteStatement sqLiteStatement = xuLyDatabase.getWritableDatabase().compileStatement(themDLVayTra);
+
+        sqLiteStatement.clearBindings();
+
+        sqLiteStatement.bindDouble(1, soTienVay);
+        sqLiteStatement.bindDouble(2, soTienTra);
+        sqLiteStatement.bindString(3, nguoiGiaoDich);
+        sqLiteStatement.bindString(4, loaiGiaoDich);
+        sqLiteStatement.bindString(5, ghiChuGiaoDich);
+        sqLiteStatement.bindString(6, thoiGianGiaoDich);
+        sqLiteStatement.bindDouble(7, laiSuat);
+        sqLiteStatement.bindString(8, trangThai);
+
+        sqLiteStatement.executeInsert();
     }
 
 }
