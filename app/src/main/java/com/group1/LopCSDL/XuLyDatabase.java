@@ -27,23 +27,23 @@ public class XuLyDatabase extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        khongTraKQ("CREATE TABLE IF NOT EXISTS "+KeyDatabase.TABLENAME_NGUOIDUNG+" (nickName VARCHAR(200) PRIMARY KEY," +
+        db.execSQL("CREATE TABLE IF NOT EXISTS "+KeyDatabase.TABLENAME_NGUOIDUNG+" (nickName VARCHAR(200) PRIMARY KEY," +
                 "Email VARCHAR(200), " +
                 "GioiTinh INTEGER, " +
                 "ngaySinh DATETIME, " +
                 "PassWord VARCAR(100), " +
                 "Create_time DATETIME)");
-        khongTraKQ("CREATE TABLE IF NOT EXISTS "+KeyDatabase.TABLENAME_CHITIEU+" (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+        db.execSQL("CREATE TABLE IF NOT EXISTS "+KeyDatabase.TABLENAME_CHITIEU+" (ID INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "soTien DOUBLE, " +
                 "loaiGiaoDich VARCHAR(200), " +
                 "ghiChuGiaoDich VARCHAR(150), " +
                 "thoiGianGiaoDich DATETIME, " +
                 "diaDiem VARCHAR(200), " +
                 "soLuong INTERGER)");
-        khongTraKQ("CREATE TABLE IF NOT EXISTS "+KeyDatabase.TABLENAME_VAY+" (ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+        db.execSQL("CREATE TABLE IF NOT EXISTS "+KeyDatabase.TABLENAME_VAY+" (ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "soTienVay DOUBLE, " +
                 "soTienTra DOUBLE, " +
-                "hantra DATETIME"+
+                "hantra DATETIME,"+
                 "nguoiGiaoDich VARCHAR(100), " +
                 "loaiGiaoDich VARCHAR(200), " +
                 "ghiChuGiaoDich VARCHAR(100), " +

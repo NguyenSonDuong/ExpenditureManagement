@@ -1,9 +1,14 @@
 package com.group1.LopCSDL;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
+import android.widget.Toast;
+
+import com.group1.expendituremanagement.DangNhap;
+import com.group1.expendituremanagement.MainActivity;
 
 public class HoTroXuLyDataBase {
 
@@ -12,6 +17,19 @@ public class HoTroXuLyDataBase {
     public HoTroXuLyDataBase() {
     }
 
+
+    public static boolean loginCheck(Context context,String nickname, String password){
+        XuLyDatabase xuLyDatabase = new XuLyDatabase(context, KeyDatabase.DATABASENAME,null, 1);
+        Cursor cursor = xuLyDatabase.traVeKQ("SELECT * FROM "+KeyDatabase.TABLENAME_NGUOIDUNG+" WHERE nickName = '"+nickname+"' AND PassWord = '"+password+"'");
+        if(cursor.getCount() != 1){
+            return false;
+        }else {
+            return true;
+        }
+    }
+//    public static boolean registerCheck(Context context,String... data){
+//
+//    }
     public static void ttNguoiDung(XuLyDatabase xuLyDatabase, Context context, String namedatabase){
         if(xuLyDatabase == null){
             xuLyDatabase = new XuLyDatabase(context, namedatabase, null, 1);
