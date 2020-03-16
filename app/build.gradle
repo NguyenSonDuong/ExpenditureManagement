@@ -35,5 +35,5 @@ dependencies {
     implementation 'com.android.support:support-v4:27.0.2'
     //noinspection GradleCompatible
     implementation 'com.android.support:design:28.0.0'
-
+    implementation("com.squareup.moshi:moshi:1.9.2")
 }

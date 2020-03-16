@@ -37,9 +37,7 @@
             android:text="Tên người dùng"
             android:textColor="#FF5722"
             android:id="@+id/txtTendangnhap">
-
         </TextView>
-
         <EditText
             android:id="@+id/edtnhapTenTK"
             android:layout_width="match_parent"
@@ -200,7 +198,7 @@
         android:layout_width="105dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@drawable/label_tron"
+        android:background="#FFF"
         android:text="ĐĂNG KÝ"
         android:textColor="#FF5722"
         android:textSize="15dp"
