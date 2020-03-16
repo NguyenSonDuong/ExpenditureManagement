@@ -164,6 +164,7 @@
             <RadioButton
                 android:id="@+id/rdgNam"
                 android:layout_width="match_parent"
+                android:checked="true"
                 android:layout_height="wrap_content"
                 android:buttonTint="#ECECEC"
                 android:textColor="#ECECEC"
@@ -189,6 +190,7 @@
         android:layout_marginLeft="20dp"
         android:textColor="#ECECEC"
         android:layout_marginRight="20dp"
+        android:buttonTint="#ECECEC"
         android:text="Đồng ý với điều khoản và chính sách của ứng dụng">
 
     </CheckBox>
