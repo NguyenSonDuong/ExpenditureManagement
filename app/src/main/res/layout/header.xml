@@ -3,56 +3,90 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     >
+
+    <TextView
+        android:id="@+id/tvTen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Expense management"
+        android:gravity="center"
+        android:textColor="#1B1A1A"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:weightSum="3"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp">
-
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/logo"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Expense management"
-                android:gravity="center"
-                android:textColor="#1B1A1A"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:layout_marginTop="15dp"
-                />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="By Code"
-                android:gravity="center"
-                android:textColor="#438A46"/>
-
-        </LinearLayout>
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Expense management"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Ngày sinh:"
+            android:textColor="#070707"
+            android:paddingLeft="5dp"
             android:gravity="center"
-            android:textColor="#1B1A1A"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            />
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/tvNgaySinh"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:hint="Ngày sinh:"
+            android:paddingLeft="5dp"
+            android:textSize="15sp"
+            android:textColor="#CD4946"/>
 
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Tổng tiền"
+            android:textColor="#070707"
+            android:paddingLeft="5dp"
+            android:gravity="center"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@+id/tvTongTien"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:hint="Tông tiền "
+            android:paddingLeft="5dp"
+            android:textSize="15sp"
+            android:textColor="#CD4946"/>
+
+
+    </LinearLayout>
+
+
 
 
 </LinearLayout>

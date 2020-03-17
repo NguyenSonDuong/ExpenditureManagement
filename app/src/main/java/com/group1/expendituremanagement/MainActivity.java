@@ -13,8 +13,8 @@ import com.group1.LopCSDL.LopCreat_Time;
 import com.group1.LopCSDL.XuLyDatabase;
 
 public class MainActivity extends AppCompatActivity {
-    HoTroXuLyDataBase hoTroXuLyDataBase;
-    XuLyDatabase xuLyDatabase;
+//    HoTroXuLyDataBase hoTroXuLyDataBase;
+//    XuLyDatabase xuLyDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
