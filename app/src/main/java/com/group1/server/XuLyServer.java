@@ -194,10 +194,11 @@ public class XuLyServer {
         }
     }
 
+
     // CÁC LỚP REPONSIVE
+
     // Lớp reponsive của Register
-    public static class RegisterReponsiveClass
-    {
+    public static class RegisterReponsiveClass {
         public int status_code ;
         public String nickname ;
         public String create_time ;
@@ -205,13 +206,102 @@ public class XuLyServer {
         public String table_chi_tieu ;
     }
     // Lớp reponsive của đăng nhập
-    public static class LoginReponsiveClass
-    {
+    public static class LoginReponsiveClass {
         public String nickname;
         public String password;
         public String access_token;
         public Calendar create_time;
     }
+    // Lớp backup vay
+    public static class BackupVay{
+        public static class BackupVayRequestClass
+        {
+            public Datum[] data ;
+            public String token ;
+        }
+        public static class Datum
+        {
+            public int id ;
+            public int sotienvay ;
+            public int sotiendatra ;
+            public String hantra ;
+            public String nguoigiaodich ;
+            public String loaigiaodich ;
+            public String ghichugiaodich ;
+            public String thoigiangiaodich ;
+            public int laisuat ;
+            public String trangthai ;
+        }
+    }
+    // Lơp backup chi tiêu
+    public static class BckupChiTieu{
+        public static class BackupChiTieuRequestClass
+        {
+            public Data[] data ;
+            public String token ;
+        }
+        public static class Data
+        {
+            public int id ;
+            public int sotien ;
+            public String loaigiaodich ;
+            public String ghichugiaodich ;
+            public String thoigiangiaodich ;
+            public String diadiem ;
+            public String soluong ;
+        }
+    }
+    // reponsive successfull backup chitieu and vay
+    public static class ReponsiveSuccessfull {
+        public int status_code ;
+        public String status_message ;
+        public String output ;
+        public String time ;
+    }
+    // get vay
+    public static class SynchVay{
+        public static class ReponsiveSynchVay
+        {
+            public Datum[] data ;
+            public String create_time ;
+        }
+
+        public static class Datum
+        {
+            public String ID ;
+            public String sotienvay ;
+            public String hantra ;
+            public String nguoigiaodich ;
+            public String loaigiaodich ;
+            public String ghichugiaodich ;
+            public String thoigiangiaodich ;
+            public String laisuat ;
+            public String trangthai ;
+            public String backup_time ;
+        }
+    }
+    // Synch chitieu
+    public static class SynchChiTieu{
+        public class ReponsiveSynchChiTieu
+        {
+            public Datum[] data ;
+            public String create_time ;
+        }
+
+        public class Datum
+        {
+            public String ID ;
+            public String sotien ;
+            public String loaigiaodich ;
+            public String ghichugiaodich ;
+            public String thoigiangiaodich ;
+            public String diadiem ;
+            public String soluong ;
+            public String backup_time ;
+        }
+
+    }
+
 
 
 }
