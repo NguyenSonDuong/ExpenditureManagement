@@ -2,37 +2,43 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group
-        android:id="@+id/group"
+        android:id="@+id/group1"
         >
-        <item
-            android:id="@+id/thongBao"
-            android:icon="@drawable/ic_thong_bao"
-            android:title="Thông báo"/>
 
         <item
-            android:id="@+id/hoTroKH"
-            android:title="Hỗ trợ khách hàng"/>
+            android:id="@+id/itemttNguoiDung"
+            android:title="Thông tin người dùng"
+            android:icon="@drawable/ic_person_outline"/>
 
         <item
-            android:id="@+id/caiDat"
-            android:icon="@drawable/ic_cai_dat"
-            android:title="Cài đặt"/>
+            android:id="@+id/itemChiTieu"
+            android:title="Thống kê chi tiêu"
+            android:icon="@drawable/ic_show_chart"/>
+
+        <item
+            android:id="@+id/itemVayTra"
+            android:title="Thống kê vay, trả"
+            android:icon="@drawable/ic_multiline_chart"/>
     </group>
 
-    <group>
+    <group
+
+        android:id="@+id/group2">
+
         <item
-            android:id="@+id/lsCT"
-            android:title="Lịch sử chi tiêu"
+            android:id="@+id/itemCaiDat"
+            android:title="Cài đặt"
+            android:icon="@drawable/ic_settings"
             />
-
         <item
-            android:id="@+id/lsVT"
-            android:title="Lịch sử vay trả"/>
-
+            android:id="@+id/itemThongTin"
+            android:title="Thông tin"
+            android:icon="@drawable/ic_info" />
     </group>
 
     <item
-        android:id="@+id/dangXuat"
-        android:title="Đăng xuất"/>
+        android:id="@+id/itemDangXuat"
+        android:title="Đăng xuất"
+        android:icon="@drawable/ic_power"/>
 
 </menu>
