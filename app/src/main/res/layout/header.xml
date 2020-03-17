@@ -2,22 +2,22 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:background="@drawable/gradiun"
     >
 
     <TextView
         android:id="@+id/tvTen"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Expense management"
         android:gravity="center"
-        android:textColor="#1B1A1A"
+        android:textColor="#FFFFFF"
         android:textStyle="bold"
         android:textSize="22sp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="15dp"
+        android:text="Nguyễn Sơn Dương"
+        android:background="#83000000"
+        android:padding="15dp"
         />
 
     <LinearLayout
@@ -25,30 +25,29 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="3"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginBottom="15dp">
+        android:padding="15dp"
+        >
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Ngày sinh:"
-            android:textColor="#070707"
+            android:textColor="#F6F6F6"
             android:paddingLeft="5dp"
             android:gravity="center"
-            android:textSize="14sp"/>
+            android:textStyle="bold"
+            android:textSize="16sp"/>
 
         <TextView
             android:id="@+id/tvNgaySinh"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:hint="Ngày sinh:"
+            android:text="02/04/1999"
             android:paddingLeft="5dp"
-            android:textSize="15sp"
-            android:textColor="#CD4946"/>
+            android:textSize="16sp"
+            android:textColor="#000000"/>
 
 
     </LinearLayout>
@@ -58,30 +57,28 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="3"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginBottom="15dp">
+        android:padding="15dp">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Tổng tiền"
-            android:textColor="#070707"
+            android:textColor="#FFFFFF"
             android:paddingLeft="5dp"
+            android:textStyle="bold"
             android:gravity="center"
-            android:textSize="14sp"/>
+            android:textSize="16sp"/>
 
         <TextView
             android:id="@+id/tvTongTien"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
-            android:hint="Tông tiền "
+            android:text="108.800.800 đ"
             android:paddingLeft="5dp"
-            android:textSize="15sp"
-            android:textColor="#CD4946"/>
+            android:textSize="16sp"
+            android:textColor="#020202"/>
 
 
     </LinearLayout>
