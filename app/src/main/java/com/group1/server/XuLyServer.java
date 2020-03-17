@@ -1,6 +1,7 @@
 package com.group1.server;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
@@ -193,7 +194,32 @@ public class XuLyServer {
             return null;
         }
     }
-
+    public static Object backupVay(Context context, BackupChiTieu data){
+        try{
+            String url = HOST+BACKUP_VAY;
+            Moshi moshi = new Moshi.Builder().build();
+            JsonAdapter<BackupChiTieu> jsonAdapter = moshi.adapter(BackupChiTieu.class);
+            String postData = jsonAdapter.toJson(data);
+            String json = Post(context,url,postData);
+            JsonAdapter<ReponsiveSuccessfull> successfullJsonAdapter = moshi.adapter(ReponsiveSuccessfull.class);
+            try{
+                ReponsiveSuccessfull re = successfullJsonAdapter.fromJson(json);
+                return re;
+            }catch (Exception e){
+                try{
+                    JsonAdapter<ReponsiveFalse.Rootobject> rootobjectJsonAdapter = moshi.adapter(ReponsiveFalse.Rootobject.class);
+                    ReponsiveFalse.Rootobject rootobject = rootobjectJsonAdapter.fromJson(json);
+                    return rootobject;
+                }catch (Exception ex){
+                    Log.d("TAG", "backupVay: "+ex.getMessage());
+                    return null;
+                }
+            }
+        }catch (Exception ex){
+            Log.d("TAG", "backupVay: "+ex.getMessage());
+            return null;
+        }
+    }
 
     // CÁC LỚP REPONSIVE
 
@@ -234,7 +260,7 @@ public class XuLyServer {
         }
     }
     // Lơp backup chi tiêu
-    public static class BckupChiTieu{
+    public static class BackupChiTieu{
         public static class BackupChiTieuRequestClass
         {
             public Data[] data ;
@@ -257,6 +283,27 @@ public class XuLyServer {
         public String status_message ;
         public String output ;
         public String time ;
+    }
+    // reponsive false backup chitieu and vay
+    public static class ReponsiveFalse{
+        public class Rootobject
+        {
+            public Datum[] data;
+            public String error ;
+            public String create_time ;
+        }
+
+        public class Datum
+        {
+            public int id ;
+            public int sotien ;
+            public String loaigiaodich ;
+            public String ghichugiaodich ;
+            public String thoigiangiaodich ;
+            public String diadiem ;
+            public String soluong ;
+        }
+
     }
     // get vay
     public static class SynchVay{
