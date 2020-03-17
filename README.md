@@ -9,7 +9,7 @@
   * Đặt giới hạn chi tiêu theo ngày/tháng/năm
   * Updating...
 ## Thành viên nhóm:
-  * Nguyễn Sơn Dương **Nhóm trưởng**
+  * Nguyễn Sơn Dương **(Nhóm trưởng)**
   * Nguyễn Thị Hiền
   * Vi Ngọc Ánh
   * Trương thị Lan Anh
