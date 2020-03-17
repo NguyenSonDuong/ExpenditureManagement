@@ -13,6 +13,15 @@ public class ThongTinChiTieu {
     public ThongTinChiTieu() {
     }
 
+    public ThongTinChiTieu(double soTien, String loaiGiaoDich, String ghiChuGiaoDich, String thoiGianGiaoDich, String diaDiem, int soLuong) {
+        this.soTien = soTien;
+        this.loaiGiaoDich = loaiGiaoDich;
+        this.ghiChuGiaoDich = ghiChuGiaoDich;
+        this.thoiGianGiaoDich = thoiGianGiaoDich;
+        this.diaDiem = diaDiem;
+        this.soLuong = soLuong;
+    }
+
     public ThongTinChiTieu(int id, double soTien, String loaiGiaoDich, String ghiChuGiaoDich, String thoiGianGiaoDich, String diaDiem, int soLuong) {
         this.id = id;
         this.soTien = soTien;
