@@ -18,6 +18,9 @@ import com.group1.LopCSDL.KeyDatabase;
 import com.group1.LopCSDL.XuLyDatabase;
 import com.group1.server.XuLyServer;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Dang_Ky extends AppCompatActivity {
 
     EditText edtnhapTenTK,edtPass,edtMK,edtdEmail;
@@ -51,6 +54,13 @@ public class Dang_Ky extends AppCompatActivity {
                 String password  = edtPass.getText().toString();
                 String email = edtdEmail.getText().toString();
                 String rePass = edtMK.getText().toString();
+                String regex = "[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}";
+                Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE | Pattern.MULTILINE);
+                Matcher matcher = pattern.matcher(email);
+                if(!matcher.matches()){
+                    Toast.makeText(Dang_Ky.this, "Vui lòng nhập đúng định dạng email", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if(!checkeddk.isChecked()){
                     Toast.makeText(Dang_Ky.this, "Vui lòng đồng ý với điều khoản để tiếp tục đăng ký", Toast.LENGTH_SHORT).show();
                     return;
