@@ -63,6 +63,7 @@ public class Dang_Ky extends AppCompatActivity {
                     Toast.makeText(Dang_Ky.this, "Vui lòng nhập đủ thông tin", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
                 int sex = 1;
                 if(rdgNam.isChecked()){
                     sex=2;
@@ -81,6 +82,7 @@ public class Dang_Ky extends AppCompatActivity {
                                 if(online.table_chi_tieu.equals("Thất bại") || online.table_vay.equals("Thất bại")){
                                     Toast.makeText(Dang_Ky.this, "Đăng ký online không thành công", Toast.LENGTH_SHORT).show();
                                 }
+                                Toast.makeText(Dang_Ky.this, "Đăng ký online thành công", Toast.LENGTH_SHORT).show();
                             }
                             else {
                                 Toast.makeText(Dang_Ky.this, "Đăng ký online không thành công", Toast.LENGTH_SHORT).show();
@@ -101,7 +103,6 @@ public class Dang_Ky extends AppCompatActivity {
             }
         });
     }
-
     public XuLyServer.RegisterReponsiveClass registerOnline(){
         int sex = 1;
         if(rdgNam.isChecked()){
