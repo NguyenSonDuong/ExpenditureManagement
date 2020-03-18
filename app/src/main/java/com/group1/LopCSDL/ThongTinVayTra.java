@@ -5,6 +5,7 @@ public class ThongTinVayTra {
     private int id;
     private double soTienVay;
     private double soTienTra;
+    private String hanTra;
     private String nguoiGiaoDich;
     private String loaiGiaoDich;
     private String ghiChuGiaoDich;
@@ -15,10 +16,10 @@ public class ThongTinVayTra {
     public ThongTinVayTra() {
     }
 
-    public ThongTinVayTra(int id, double soTienVay, double soTienTra, String nguoiGiaoDich, String loaiGiaoDich, String ghiChuGiaoDich, String thoiGianGiaoDich, double laiSuat, String trangThai) {
-        this.id = id;
+    public ThongTinVayTra(double soTienVay, double soTienTra, String hanTra, String nguoiGiaoDich, String loaiGiaoDich, String ghiChuGiaoDich, String thoiGianGiaoDich, double laiSuat, String trangThai) {
         this.soTienVay = soTienVay;
         this.soTienTra = soTienTra;
+        this.hanTra = hanTra;
         this.nguoiGiaoDich = nguoiGiaoDich;
         this.loaiGiaoDich = loaiGiaoDich;
         this.ghiChuGiaoDich = ghiChuGiaoDich;
@@ -27,6 +28,18 @@ public class ThongTinVayTra {
         this.trangThai = trangThai;
     }
 
+    public ThongTinVayTra(int id, double soTienVay, double soTienTra, String hanTra, String nguoiGiaoDich, String loaiGiaoDich, String ghiChuGiaoDich, String thoiGianGiaoDich, double laiSuat, String trangThai) {
+        this.id = id;
+        this.soTienVay = soTienVay;
+        this.soTienTra = soTienTra;
+        this.hanTra = hanTra;
+        this.nguoiGiaoDich = nguoiGiaoDich;
+        this.loaiGiaoDich = loaiGiaoDich;
+        this.ghiChuGiaoDich = ghiChuGiaoDich;
+        this.thoiGianGiaoDich = thoiGianGiaoDich;
+        this.laiSuat = laiSuat;
+        this.trangThai = trangThai;
+    }
 
     public int getId() {
         return id;
@@ -50,6 +63,14 @@ public class ThongTinVayTra {
 
     public void setSoTienTra(double soTienTra) {
         this.soTienTra = soTienTra;
+    }
+
+    public String getHanTra() {
+        return hanTra;
+    }
+
+    public void setHanTra(String hanTra) {
+        this.hanTra = hanTra;
     }
 
     public String getNguoiGiaoDich() {
