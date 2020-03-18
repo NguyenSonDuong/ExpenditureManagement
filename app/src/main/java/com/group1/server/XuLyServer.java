@@ -1,0 +1,217 @@
+package com.group1.server;
+
+import android.content.Context;
+import android.os.AsyncTask;
+import android.util.Log;
+import android.widget.Toast;
+
+import com.squareup.moshi.JsonAdapter;
+import com.squareup.moshi.Moshi;
+
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
+import java.util.Calendar;
+import java.util.concurrent.ExecutionException;
+
+public class XuLyServer {
+    // CONNECT SERVER INFOR
+    public static final String HOST = "http://10.0.3.2/";
+    public static final String LOGIN = "login.php";
+    public static final String REGISTER = "register_user.php";
+    public static final String UPDATE_USER_INFOR = "updateuserinfor.php";
+    public static final String BACKUP_VAY = "backupvay.php";
+    public static final String BACKUP_CHITIEU = "backupchitieu.php";
+    public static final String GET_CHITIEU = "getChiTieu.php";
+    public static final String GET_VAY = "getVay.php";
+    public static final String UPDATE_CHITIEU = "updateChiTieu.php";
+    public static final String UPDATE_VAY = "updateVay.php";
+    //POST DATA
+    // LOGIN post
+    public static String getLoginPost(String nickname,String password){
+        if(nickname.isEmpty() || password.isEmpty())
+            return null;
+        return "nickname="+nickname+"&password="+password;
+    }
+    // REGISTER post
+    public static String getRegisterPost(String nickname,String password,String email,int sex){
+        if(nickname.isEmpty() || password.isEmpty() || email.isEmpty() || sex >3 || sex <0){
+            return null;
+        }
+        return "nickname="+nickname+"&password="+password+"&email="+email+"&sex="+sex;
+    }
+    // UPDATE_USER_INFOR post
+
+
+    static class HttpRequestGet extends AsyncTask<String,String,String> {
+
+        private Context context;
+
+        public HttpRequestGet(Context context) {
+            this.context = context;
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                URL url = new URL(strings[0]);
+                HttpURLConnection http = (HttpURLConnection) url.openConnection();
+                StringBuffer dataout = new StringBuffer();
+                if(http.getResponseCode()==HttpURLConnection.HTTP_OK){
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(http.getInputStream()));
+                    String inline = "";
+                    while ((inline=bufferedReader.readLine()) != null){
+                        dataout.append(inline.replace("<br>","\n"));
+                    }
+                    return dataout.toString();
+                }else {
+                    Log.d(getClass().getName(), "doInBackground: "+ http.getResponseCode());
+                    return "Error";
+                }
+            } catch (MalformedURLException e) {
+                Log.d(getClass().getName(), "doInBackground: "+ e.getMessage());
+                return "Error";
+            } catch (IOException e) {
+                Log.d(getClass().getName(), "doInBackground: "+ e.getMessage());
+                return "error";
+            }
+        }
+    }
+    static class HttpRequestPost extends AsyncTask<String,String,String> {
+
+        private Context context;
+
+        public HttpRequestPost(Context context) {
+            this.context = context;
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                URL url = new URL(strings[0]);
+                HttpURLConnection http = (HttpURLConnection) url.openConnection();
+                http.setDoOutput(true);
+                http.setRequestMethod("POST");
+                Log.d("TAG", "doInBackground: "+strings[1]);
+                try(OutputStreamWriter stream = new OutputStreamWriter(http.getOutputStream())){
+                    stream.write(strings[1]);
+                }catch (Exception ex){
+                    Log.d(getClass().getName(), "doInBackground: "+ ex.getMessage());
+                    return "Error";
+                }
+                StringBuffer dataout = new StringBuffer();
+                if(http.getResponseCode()==HttpURLConnection.HTTP_OK){
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(http.getInputStream()));
+                    String inline = "";
+                    while ((inline=bufferedReader.readLine()) != null){
+                        dataout.append(inline);
+                    }
+                    return dataout.toString();
+                }else {
+                    Log.d(getClass().getName(), "doInBackground: " +http.getResponseCode());
+                    return "Error";
+                }
+            } catch (MalformedURLException e) {
+                Log.d(getClass().getName(), "doInBackground: "+ e.getMessage());
+                return "Error";
+            } catch (IOException e) {
+                Log.d(getClass().getName(), "doInBackground: "+ e.getMessage());
+                return "error";
+            }
+        }
+    }
+    public static String Get(Context context,String url){
+        HttpRequestGet httpRequest = new HttpRequestGet(context);
+        try {
+            String a = httpRequest.execute(url).get();
+           return  a;
+        } catch (ExecutionException e) {
+            Log.d("GET", "doInBackground: "+ e.getMessage());
+            return "Error";
+        } catch (InterruptedException e) {
+            Log.d("GET", "doInBackground: "+ e.getMessage());
+            return "Error";
+        }
+    }
+    public static String Post(Context context,String url,String postData){
+        HttpRequestPost httpRequest = new HttpRequestPost(context);
+        try {
+            String a = httpRequest.execute(url,postData).get();
+            return  a;
+        } catch (ExecutionException e) {
+            Log.d("POST", "doInBackground: "+ e.getMessage());
+            e.printStackTrace();
+            return "Error";
+        } catch (InterruptedException e) {
+            Log.d("POST", "doInBackground: "+ e.getMessage());
+            e.printStackTrace();
+            return "Error";
+        }
+    }
+
+    public static RegisterReponsiveClass getReponsiveRegister(Context context,String nickname,String password,String email,int sex){
+        try{
+            String url = HOST+REGISTER;
+            String dataPost = getRegisterPost(nickname,password,email,sex);
+            String json = Post(context,url,dataPost);
+            if(json.equals("error")){
+                Log.d("TAG", "getReponsiveRegister: "+ json);
+                return null;
+            }
+            Moshi moshi = new Moshi.Builder().build();
+            JsonAdapter<RegisterReponsiveClass> jsonAdapter = moshi.adapter(RegisterReponsiveClass.class);
+            RegisterReponsiveClass registerReponsiveClass = jsonAdapter.fromJson(json);
+            return registerReponsiveClass;
+        }catch (Exception ex){
+            Log.d("REGISTER_REPONSIVE", "doInBackground: "+ ex.getMessage());
+            return null;
+        }
+
+    }
+    public static LoginReponsiveClass getReponsiveLogin(Context context,String nickname,String password){
+        String url = HOST+LOGIN;
+        String postData = getLoginPost(nickname,password);
+        LoginReponsiveClass loginReponsiveClass;
+        try{
+            String json = Post(context,url,postData);
+            if(json.equals("error")){
+                Log.d("TAG", "getReponsiveRegister: "+ json);
+                return null;
+            }
+            Moshi moshi = new Moshi.Builder().build();
+            JsonAdapter<LoginReponsiveClass> jsonAdapter = moshi.adapter(LoginReponsiveClass.class);
+            loginReponsiveClass = jsonAdapter.fromJson(json);
+            return  loginReponsiveClass;
+        }catch (Exception ex){
+            Log.d("LOGIN_REPONSIVE", "doInBackground: "+ ex.getMessage());
+            return null;
+        }
+    }
+
+    // CÁC LỚP REPONSIVE
+    // Lớp reponsive của Register
+    public static class RegisterReponsiveClass
+    {
+        public int status_code ;
+        public String nickname ;
+        public String create_time ;
+        public String table_vay ;
+        public String table_chi_tieu ;
+    }
+    // Lớp reponsive của đăng nhập
+    public static class LoginReponsiveClass
+    {
+        public String nickname;
+        public String password;
+        public String access_token;
+        public Calendar create_time;
+    }
+
+
+}
