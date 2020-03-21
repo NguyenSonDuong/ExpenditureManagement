@@ -49,17 +49,18 @@
         android:textSize="20sp"
         android:textStyle="bold"
         />
+
     <Button
+        android:id="@+id/btnBackup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#FFF"
-        android:background="#E53935"
-        android:text="Backup"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:id="@+id/btnBackup"
-        android:padding="10dp"
         android:layout_marginHorizontal="35dp"
-        android:layout_marginTop="20dp"/>
-        
+        android:layout_marginTop="20dp"
+        android:background="#E53935"
+        android:padding="10dp"
+        android:text="Backup"
+        android:textColor="#FFF"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
 </LinearLayout>
