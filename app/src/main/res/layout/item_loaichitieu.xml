@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:padding="10dp"
+    android:background="#43A047"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:src="@drawable/icon_tieudung"/>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="5"
+        android:layout_marginLeft="10dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Khoản tiêu dùng"
+            android:textColor="#FFF"
+            android:textSize="20sp"
+            android:id="@+id/tvNameType"
+            android:textStyle="bold"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Số tiền đã chi:"
+                android:textColor="#FFF"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textColor="#FFF"
+                android:id="@+id/tvMoney"
+                android:layout_height="wrap_content"
+                android:text="300.000 đ"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:textColor="#FFF"
+                android:layout_height="wrap_content"
+                android:text="Thời gian tiêu cuối:"
+                android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textColor="#FFF"
+                android:id="@+id/tvTime"
+                android:layout_height="wrap_content"
+                android:text="01/01/2020"/>
+        </LinearLayout>
+    </LinearLayout>
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:id="@+id/imgShow"
+        android:src="@drawable/ic_play_arrow_black_24dp"/>
+</LinearLayout>

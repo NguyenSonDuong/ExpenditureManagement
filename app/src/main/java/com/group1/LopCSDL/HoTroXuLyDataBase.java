@@ -102,7 +102,7 @@ public class HoTroXuLyDataBase {
     }
 
     public static boolean addChiTieu(XuLyDatabase xuLyDatabase, ThongTinChiTieu chiTieu){
-        String themDLChiTieu = "INSERT INTO "+KeyDatabase.TABLENAME_CHITIEU+" VALUES (NULL, ?, ?, ?, ?, ?)";
+        String themDLChiTieu = "INSERT INTO "+KeyDatabase.TABLENAME_CHITIEU+" VALUES (NULL, ?, ?, ?, ?, ?,?)";
         try {
             SQLiteStatement sqLiteStatement = xuLyDatabase.getWritableDatabase().compileStatement(themDLChiTieu);
             sqLiteStatement.clearBindings();
@@ -157,6 +157,42 @@ public class HoTroXuLyDataBase {
             arrayList.add(thongTinChiTieuu);
         }
         return arrayList;
+    }
+    public static ArrayList<ThongTinChiTieu> layDLChiTieuByLoaiChiTieu(XuLyDatabase xuLyDatabase, String loaigiaodich){
+        ArrayList<ThongTinChiTieu> arrayList = new ArrayList<>();
+        Cursor cursor = xuLyDatabase.traVeKQ("SELECT * FROM "+KeyDatabase.TABLENAME_CHITIEU + " WHERE loaiGiaoDich = '"+loaigiaodich+"'");
+        while (cursor.moveToNext()){
+            ThongTinChiTieu thongTinChiTieuu = new ThongTinChiTieu();
+            thongTinChiTieuu.setId(cursor.getInt(0));
+            thongTinChiTieuu.setSoTien(cursor.getDouble(1));
+            thongTinChiTieuu.setLoaiGiaoDich(cursor.getString(2));
+            thongTinChiTieuu.setGhiChuGiaoDich(cursor.getString(3));
+            thongTinChiTieuu.setThoiGianGiaoDich(cursor.getString(4));
+            thongTinChiTieuu.setDiaDiem(cursor.getString(5));
+            thongTinChiTieuu.setSoLuong(cursor.getInt(6));
+            arrayList.add(thongTinChiTieuu);
+        }
+        return arrayList;
+    }
+
+    public static ArrayList<LoaiChiTieu> getThongLoaiChiTieu(XuLyDatabase xuLyDatabase,ArrayList<String> loaiGD){
+        ArrayList<LoaiChiTieu> list = new ArrayList<>();
+        Log.d("TAG", "ArrayListString: "+loaiGD.size());
+        for (String item : loaiGD){
+            ArrayList<ThongTinChiTieu> listDS = layDLChiTieuByLoaiChiTieu(xuLyDatabase,item);
+            Log.d("TAG", "layDLChiTieuByLoaiChiTieu: "+listDS.size());
+            LoaiChiTieu loaiChiTieu = new LoaiChiTieu();
+            loaiChiTieu.loaichitieu = item;
+            long money =0;
+            for (ThongTinChiTieu item2 : listDS){
+                money += item2.getSoTien();
+                loaiChiTieu.end_buy_time = item2.getThoiGianGiaoDich();
+            }
+            loaiChiTieu.sotien = money;
+            list.add(loaiChiTieu);
+        }
+        Log.d("TAG", "ArrayList<LoaiChiTieu>: "+list.size());
+        return list;
     }
 
     public static ArrayList<ThongTinVayTra> layDLVayTra(XuLyDatabase xuLyDatabase){
