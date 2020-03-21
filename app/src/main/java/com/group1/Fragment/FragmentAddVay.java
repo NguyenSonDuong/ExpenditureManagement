@@ -19,7 +19,6 @@ import androidx.fragment.app.Fragment;
 
 import com.group1.LopCSDL.HoTroXuLyDataBase;
 import com.group1.LopCSDL.KeyDatabase;
-import com.group1.LopCSDL.LopCreat_Time;
 import com.group1.LopCSDL.ThongTinVayTra;
 import com.group1.LopCSDL.XuLyDatabase;
 import com.group1.expendituremanagement.R;
@@ -63,8 +62,7 @@ public class FragmentAddVay extends Fragment {
         rdChoVay = (RadioButton) view.findViewById(R.id.rdChoVay);
         cktT = (CheckBox) view.findViewById(R.id.ckDTX);
         btnAdd = (Button) view.findViewById(R.id.btnAdd);
-        edtThoiGianTra.setText(LopCreat_Time.TongHopThoiGian());
-        edtTGD.setText(LopCreat_Time.TongHopThoiGian());
+
     }
     private void setEvent(){
         btnAdd.setOnClickListener(new View.OnClickListener() {

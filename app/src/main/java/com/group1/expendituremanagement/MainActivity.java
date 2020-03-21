@@ -26,7 +26,6 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 import com.group1.Fragment.FragmentAddChiTieu;
 import com.group1.Fragment.FragmentAddVay;
-import com.group1.Fragment.FragmentShowInfor;
 import com.group1.LopCSDL.HoTroXuLyDataBase;
 import com.group1.LopCSDL.KeyDatabase;
 import com.group1.LopCSDL.LopCreat_Time;
@@ -48,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
     Button btnAddVay,btnAddChiTieu;
     FragmentAddChiTieu fragmentAddChiTieu;
     FragmentAddVay fragmentAddVay;
-    FragmentShowInfor fragmentShowInfor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,14 +67,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         ivAdd.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public void onClick(View v) {
-                addFragment(fragmentShowInfor);
+                Toast.makeText(MainActivity.this, "OK", Toast.LENGTH_SHORT).show();
             }
         });
         btnAddVay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "OK", Toast.LENGTH_SHORT).show();
                 addFragment(fragmentAddVay);
             }
         });
@@ -98,14 +98,14 @@ public class MainActivity extends AppCompatActivity {
     private void init() {
         fragmentAddChiTieu = new FragmentAddChiTieu(this);
         fragmentAddVay = new FragmentAddVay(this);
-        fragmentShowInfor = new FragmentShowInfor(this);
         flN = (FrameLayout) findViewById(R.id.flN);
         fragmentManager = getSupportFragmentManager();
         btnAddChiTieu = (Button) findViewById(R.id.btnAddChiTieu);
         btnAddVay = (Button) findViewById(R.id.btnAddVay);
+        listView = (ListView) findViewById(R.id.lvDS);
         navigationView = (NavigationView) findViewById(R.id.naViGation);
         ivAdd = (ImageView) findViewById(R.id.ivAdd1);
-        addFragment(fragmentShowInfor);
+
         XuLyDatabase xuLyDatabase = new XuLyDatabase(this, KeyDatabase.DATABASENAME_INFOR,null,1);
         ArrayList<ThongTinVayTra> list = HoTroXuLyDataBase.layDLVayTra(xuLyDatabase);
     }
