@@ -9,5 +9,7 @@ public class KeyDatabase {
     public static final String BACKUP_FILE = "backup";
     public static final String LOGIN_INFOR_NAMEFILE = "login";
     public static final String LOGIN_OFFLINE_TOKEN = "token";
+    public static final String LOGIN_OFFLINE_TIME = "logintime";
+    public static final String LOGIN_OFFLINE_NICKNAME = "nickname";
     public static String DATABASENAME_INFOR = "";
 }
