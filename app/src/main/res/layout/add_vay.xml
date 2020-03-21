@@ -1,6 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minHeight="700dp"
+    android:minWidth="400dp"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:minHeight="800dp"
+        android:minWidth="400dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:text="Thêm thông tin vay nợ"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:layout_marginTop="10dp"
+            android:textColor="#F4511E"/>
+        <TextView
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Số tiền đã vay: "
+            android:layout_marginHorizontal="40dp"/>
+        <EditText
+            android:id="@+id/edtSTV"
+            android:layout_width="match_parent"
+            android:inputType="number"
+            android:singleLine="true"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:hint="Số tiền vay">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </EditText>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:text="Số tiền đã trả: "
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/STT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:singleLine="true"
+            android:inputType="number"
+            android:hint="Số tiền trả">
+
+        </EditText>
+        <TextView
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Người giao dịch: "
+            android:layout_marginHorizontal="40dp"/>
+        <EditText
+            android:id="@+id/edtNGD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:layout_marginHorizontal="40dp"
+            android:hint="Người giao dịch">
+
+        </EditText>
+        <TextView
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Loại giao dịch: "
+            android:layout_marginHorizontal="40dp"/>
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:orientation="horizontal">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rdDiVay"
+                android:text="Đi vay"/>
+            <RadioButton
+                android:layout_marginLeft="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rdChoVay"
+                android:text="Cho vay"/>
+        </RadioGroup>
+        <TextView
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ghi chú giao dịch: "
+            android:layout_marginHorizontal="40dp"/>
+        <EditText
+            android:id="@+id/GGD"
+            android:layout_width="match_parent"
+            android:singleLine="true"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:hint="Ghi chú giao dịch">
+
+        </EditText>
+        <TextView
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thời gian giao dịch: "
+            android:layout_marginHorizontal="40dp"/>
+        <EditText
+            android:id="@+id/edtTGD"
+            android:layout_width="match_parent"
+            android:singleLine="true"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:inputType="datetime"
+            android:hint="Thời gian giao dịch">
+        </EditText>
+        <TextView
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Thời hạn trả: "
+            android:layout_marginHorizontal="40dp"/>
+        <EditText
+            android:id="@+id/edtThoiGianTra"
+            android:layout_width="match_parent"
+            android:singleLine="true"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:inputType="datetime"
+            android:hint="Thời gian giao dịch">
+        </EditText>
+        <TextView
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lãi xuất: "
+            android:layout_marginHorizontal="40dp"/>
+        <EditText
+            android:id="@+id/edtLS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:layout_marginHorizontal="40dp"
+            android:inputType="number"
+            android:hint="Lãi suất">
+
+        </EditText>
+        <TextView
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Trạng thái trả: "
+            android:layout_marginHorizontal="40dp"/>
+        <CheckBox
+            android:id="@+id/ckDTX"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginBottom="10dp"
+            android:text="Đã trả xong"
+            >
+
+        </CheckBox>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:background="#E53935"
+            android:textColor="#fff"
+            android:id="@+id/btnAdd"
+            android:text="Thêm chi tiêu">
+
+        </Button>
+    </LinearLayout>
+
+</ScrollView>

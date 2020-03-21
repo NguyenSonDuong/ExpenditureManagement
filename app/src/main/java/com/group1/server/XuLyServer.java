@@ -1,11 +1,16 @@
 package com.group1.server;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.group1.LopCSDL.KeyDatabase;
+import com.group1.LopCSDL.ThongTinChiTieu;
+import com.group1.LopCSDL.ThongTinVayTra;
+import com.group1.expendituremanagement.BackupData;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 
@@ -18,6 +23,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.concurrent.ExecutionException;
 
@@ -99,7 +105,6 @@ public class XuLyServer {
                 HttpURLConnection http = (HttpURLConnection) url.openConnection();
                 http.setDoOutput(true);
                 http.setRequestMethod("POST");
-                Log.d("TAG", "doInBackground: "+strings[1]);
                 try(OutputStreamWriter stream = new OutputStreamWriter(http.getOutputStream())){
                     stream.write(strings[1]);
                 }catch (Exception ex){
@@ -178,6 +183,9 @@ public class XuLyServer {
     public static LoginReponsiveClass getReponsiveLogin(Context context,String nickname,String password){
         String url = HOST+LOGIN;
         String postData = getLoginPost(nickname,password);
+        if(postData == null){
+            Log.d("TAG", "getReponsiveLogin: NULL");
+        }
         LoginReponsiveClass loginReponsiveClass;
         try{
             String json = Post(context,url,postData);
@@ -194,20 +202,27 @@ public class XuLyServer {
             return null;
         }
     }
-    public static Object backupVay(Context context, BackupChiTieu data){
+    public static Object backupVay(Context context, BackupVay.BackupVayRequestClass data){
         try{
             String url = HOST+BACKUP_VAY;
             Moshi moshi = new Moshi.Builder().build();
-            JsonAdapter<BackupChiTieu> jsonAdapter = moshi.adapter(BackupChiTieu.class);
+            JsonAdapter<BackupVay.BackupVayRequestClass> jsonAdapter = moshi.adapter(BackupVay.BackupVayRequestClass.class);
             String postData = jsonAdapter.toJson(data);
-            String json = Post(context,url,postData);
+            String json = Post(context,url,"data="+postData);
             JsonAdapter<ReponsiveSuccessfull> successfullJsonAdapter = moshi.adapter(ReponsiveSuccessfull.class);
             try{
                 ReponsiveSuccessfull re = successfullJsonAdapter.fromJson(json);
+                if(re.status_message == null){
+                    Moshi moshi2 = new Moshi.Builder().build();
+                    JsonAdapter<ReponsiveFalse.Rootobject> rootobjectJsonAdapter = moshi2.adapter(ReponsiveFalse.Rootobject.class);
+                    ReponsiveFalse.Rootobject rootobject = rootobjectJsonAdapter.fromJson(json);
+                    return rootobject;
+                }
                 return re;
             }catch (Exception e){
                 try{
-                    JsonAdapter<ReponsiveFalse.Rootobject> rootobjectJsonAdapter = moshi.adapter(ReponsiveFalse.Rootobject.class);
+                    Moshi moshi2 = new Moshi.Builder().build();
+                    JsonAdapter<ReponsiveFalse.Rootobject> rootobjectJsonAdapter = moshi2.adapter(ReponsiveFalse.Rootobject.class);
                     ReponsiveFalse.Rootobject rootobject = rootobjectJsonAdapter.fromJson(json);
                     return rootobject;
                 }catch (Exception ex){
@@ -220,11 +235,158 @@ public class XuLyServer {
             return null;
         }
     }
-
-
-
+    public static Object backupChiTieu(Context context, BackupChiTieu.BackupChiTieuRequestClass data){
+        try{
+            String url = HOST+BACKUP_VAY;
+            Moshi moshi = new Moshi.Builder().build();
+            JsonAdapter<BackupChiTieu.BackupChiTieuRequestClass> jsonAdapter = moshi.adapter(BackupChiTieu.BackupChiTieuRequestClass.class);
+            String postData = jsonAdapter.toJson(data);
+            String json = Post(context,url,"data="+postData);
+            JsonAdapter<ReponsiveSuccessfull> successfullJsonAdapter = moshi.adapter(ReponsiveSuccessfull.class);
+            try{
+                ReponsiveSuccessfull re = successfullJsonAdapter.fromJson(json);
+                if(re.status_message == null){
+                    Moshi moshi2 = new Moshi.Builder().build();
+                    JsonAdapter<ReponsiveFalse.Rootobject> rootobjectJsonAdapter = moshi2.adapter(ReponsiveFalse.Rootobject.class);
+                    ReponsiveFalse.Rootobject rootobject = rootobjectJsonAdapter.fromJson(json);
+                    return rootobject;
+                }
+                return re;
+            }catch (Exception e){
+                try{
+                    Moshi moshi2 = new Moshi.Builder().build();
+                    JsonAdapter<ReponsiveFalse.Rootobject> rootobjectJsonAdapter = moshi2.adapter(ReponsiveFalse.Rootobject.class);
+                    ReponsiveFalse.Rootobject rootobject = rootobjectJsonAdapter.fromJson(json);
+                    return rootobject;
+                }catch (Exception ex){
+                    Log.d("TAG", "backupVay: "+ex.getMessage());
+                    return null;
+                }
+            }
+        }catch (Exception ex){
+            Log.d("TAG", "backupVay: "+ex.getMessage());
+            return null;
+        }
+    }
+    public static ArrayList<ThongTinChiTieu> synchChiTieu(Context context,String token){
+        ArrayList<ThongTinChiTieu> listChiTieu = new ArrayList<>();
+        try{
+            String url = HOST+GET_CHITIEU;
+            String postData = "token="+token;
+            String json = Post(context,url,postData);
+            Moshi moshi = new Moshi.Builder().build();
+            JsonAdapter<SynchChiTieu.ReponsiveSynchChiTieu> adapter = moshi.adapter(SynchChiTieu.ReponsiveSynchChiTieu.class);
+            SynchChiTieu.ReponsiveSynchChiTieu reponsiveSynchChiTieu = adapter.fromJson(json);
+            for(SynchChiTieu.Datum item : reponsiveSynchChiTieu.data){
+                ThongTinChiTieu thongTinChiTieu = new ThongTinChiTieu();
+                thongTinChiTieu.setId(Integer.parseInt(item.ID));
+                thongTinChiTieu.setSoTien(Double.parseDouble(item.sotien));
+                thongTinChiTieu.setSoLuong(Integer.parseInt(item.soluong));
+                thongTinChiTieu.setDiaDiem(item.diadiem);
+                thongTinChiTieu.setGhiChuGiaoDich(item.ghichugiaodich);
+                thongTinChiTieu.setLoaiGiaoDich(item.loaigiaodich);
+                thongTinChiTieu.setThoiGianGiaoDich(item.thoigiangiaodich);
+                listChiTieu.add(thongTinChiTieu);
+            }
+        }catch (Exception e){
+            Log.d("TAG", "synchChiTieu: "+e.getMessage());
+        }
+        return listChiTieu;
+    }
+    public static ArrayList<ThongTinVayTra> synchVay(Context context,String token){
+        ArrayList<ThongTinVayTra> listVay = new ArrayList<>();
+        try{
+            String url = HOST+GET_CHITIEU;
+            String postData = "token="+token;
+            String json = Post(context,url,postData);
+            Moshi moshi = new Moshi.Builder().build();
+            JsonAdapter<SynchVay.ReponsiveSynchVay> adapter = moshi.adapter(SynchVay.ReponsiveSynchVay.class);
+            SynchVay.ReponsiveSynchVay reponsiveSynch = adapter.fromJson(json);
+            for(SynchVay.Datum item : reponsiveSynch.data){
+                ThongTinVayTra thongTinVayTra = new ThongTinVayTra();
+                thongTinVayTra.id = Integer.parseInt(item.ID);
+                thongTinVayTra.sotienvay = Long.parseLong(item.sotienvay);
+                thongTinVayTra.sotiendatra = Long.parseLong(item.sotiendatra);
+                thongTinVayTra.ghichugiaodich = item.ghichugiaodich;
+                thongTinVayTra.hantra = item.hantra;
+                thongTinVayTra.laisuat = Integer.parseInt(item.laisuat);
+                thongTinVayTra.loaigiaodich = item.loaigiaodich;
+                thongTinVayTra.nguoigiaodich = item.nguoigiaodich;
+                thongTinVayTra.thoigiangiaodich = item.thoigiangiaodich;
+                thongTinVayTra.trangthai = item.trangthai;
+                listVay.add(thongTinVayTra);
+            }
+        }catch (Exception e){
+            Log.d("TAG", "synchChiTieu: "+e.getMessage());
+        }
+        return listVay;
+    }
     // CÁC LỚP REPONSIVE
 
+
+    // Conver data
+    public static BackupVay.BackupVayRequestClass convertVayTraToJson(String token, ArrayList<ThongTinVayTra> list){
+        BackupVay.BackupVayRequestClass backupVayRequestClass = new BackupVay.BackupVayRequestClass();
+        ArrayList<BackupVay.Datum> d =new ArrayList<>();
+        for (ThongTinVayTra item : list) {
+            BackupVay.Datum data = new BackupVay.Datum();
+            data.id = item.id;
+            data.sotienvay = item.sotienvay;
+            data.sotiendatra = item.sotiendatra;
+            data.hantra = item.hantra;
+            data.nguoigiaodich = item.nguoigiaodich;
+            data.loaigiaodich = item.nguoigiaodich;
+            data.ghichugiaodich = item.ghichugiaodich;
+            data.thoigiangiaodich = item.thoigiangiaodich;
+            data.laisuat = item.laisuat;
+            data.trangthai = item.trangthai;
+            d.add(data);
+        }
+        backupVayRequestClass.data =  new BackupVay.Datum[d.size()];
+        d.toArray(backupVayRequestClass.data);
+        backupVayRequestClass.token = token;
+        return backupVayRequestClass;
+    }
+    public static BackupChiTieu.BackupChiTieuRequestClass convertChiTieuToJson(String token, ArrayList<ThongTinChiTieu> list){
+        BackupChiTieu.BackupChiTieuRequestClass chiTieuRequestClass = new BackupChiTieu.BackupChiTieuRequestClass();
+        ArrayList<BackupChiTieu.Data> d =new ArrayList<>();
+        for (ThongTinChiTieu item : list) {
+            BackupChiTieu.Data data = new BackupChiTieu.Data();
+            data.id = item.getId();
+            data.sotien = (long) item.getSoTien();
+            data.thoigiangiaodich = item.getThoiGianGiaoDich();
+            data.soluong = item.getSoLuong();
+            data.loaigiaodich = item.getLoaiGiaoDich();
+            data.ghichugiaodich = item.getGhiChuGiaoDich();
+            data.diadiem = item.getDiaDiem();
+            d.add(data);
+        }
+        chiTieuRequestClass.data =  new BackupChiTieu.Data[d.size()];
+        d.toArray(chiTieuRequestClass.data);
+        chiTieuRequestClass.token = token;
+        return chiTieuRequestClass;
+    }
+
+    public static String getTokenOffline(Context context){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(KeyDatabase.LOGIN_INFOR_NAMEFILE,Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString(KeyDatabase.LOGIN_OFFLINE_TOKEN,"");
+        return token;
+    }
+    public static String getTimeBackup(Context context){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(KeyDatabase.BACKUP_FILE,Context.MODE_PRIVATE);
+        try{
+            String time = sharedPreferences.getString(KeyDatabase.KEY_TIME_BACKUP,"");
+            return time;
+        }catch (Exception ex){
+            return "";
+        }
+    }
+    public static void setDataToFile(Context context,String name,String key,String data){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(name,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(key,data);
+        editor.commit();
+    }
     // Lớp reponsive của Register
     public static class RegisterReponsiveClass {
         public int status_code ;
@@ -238,7 +400,7 @@ public class XuLyServer {
         public String nickname;
         public String password;
         public String access_token;
-        public Calendar create_time;
+        public String create_time;
     }
     // Lớp backup vay
     public static class BackupVay{
@@ -250,15 +412,16 @@ public class XuLyServer {
         public static class Datum
         {
             public int id ;
-            public int sotienvay ;
-            public int sotiendatra ;
+            public long sotienvay ;
+            public long sotiendatra ;
             public String hantra ;
             public String nguoigiaodich ;
             public String loaigiaodich ;
             public String ghichugiaodich ;
-            public String thoigiangiaodich ;
-            public int laisuat ;
+            public String thoigiangiaodich;
+            public long laisuat ;
             public String trangthai ;
+
         }
     }
     // Lơp backup chi tiêu
@@ -271,12 +434,12 @@ public class XuLyServer {
         public static class Data
         {
             public int id ;
-            public int sotien ;
+            public long sotien ;
             public String loaigiaodich ;
             public String ghichugiaodich ;
             public String thoigiangiaodich ;
             public String diadiem ;
-            public String soluong ;
+            public int soluong ;
         }
     }
     // reponsive successfull backup chitieu and vay
@@ -288,14 +451,14 @@ public class XuLyServer {
     }
     // reponsive false backup chitieu and vay
     public static class ReponsiveFalse{
-        public class Rootobject
+        public static class Rootobject
         {
             public Datum[] data;
             public String error ;
             public String create_time ;
         }
 
-        public class Datum
+        public static class Datum
         {
             public int id ;
             public int sotien ;
@@ -319,6 +482,7 @@ public class XuLyServer {
         {
             public String ID ;
             public String sotienvay ;
+            public String sotiendatra;
             public String hantra ;
             public String nguoigiaodich ;
             public String loaigiaodich ;

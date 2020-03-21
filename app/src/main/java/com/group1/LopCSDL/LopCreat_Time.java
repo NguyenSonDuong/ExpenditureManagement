@@ -10,29 +10,29 @@ public class LopCreat_Time {
 
     public static String ngayThang(){
         calendar  = Calendar.getInstance();
+        calendar.setTimeZone(TimeZone.getTimeZone("Asia/Ho_Chi_Minh"));
         int nam = calendar.get(Calendar.YEAR);
-        int thang = calendar.get(Calendar.MONTH) +1;
+        int thang = calendar.get(Calendar.MONTH)+1 ;
         int ngay = calendar.get(Calendar.DATE);
 
-        String ngayTN = nam +"/"+ thang +"/"+ngay;
+        String ngayTN = String.format("%04d",nam) +"/"+ String.format("%02d",thang) +"/"+ String.format("%02d",ngay);
         return ngayTN;
     }
 
     public static String gioPhutGiay(){
-        //calendar.setTimeZone(TimeZone.getTimeZone("Asia/Ho_Chi_Minh"));
-        int gio = calendar.getTime().getHours() - 1;
+        calendar  = Calendar.getInstance();
+        calendar.setTimeZone(TimeZone.getTimeZone("Asia/Ho_Chi_Minh"));
+        int gio = calendar.getTime().getHours() ;
         int phut = calendar.getTime().getMinutes();
         int giay = calendar.getTime().getSeconds();
-
-        String gioPG = gio +":"+ phut +":"+giay;
-
+        String gioPG = String.format("%02d",gio) +":"+ String.format("%02d",phut) +":"+ String.format("%02d",giay);
         return gioPG;
 
     }
 
     public static String TongHopThoiGian(){
 
-        return ngayThang() +"\n"+gioPhutGiay();
+        return ngayThang() +" "+gioPhutGiay();
     }
 
 

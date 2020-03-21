@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.group1.LopCSDL.HoTroXuLyDataBase;
 import com.group1.LopCSDL.KeyDatabase;
 import com.group1.LopCSDL.XuLyDatabase;
+import com.group1.server.XuLyServer;
 
 public class DangNhap extends AppCompatActivity {
     EditText edit_nickname, edit_password;
@@ -50,6 +51,15 @@ public class DangNhap extends AppCompatActivity {
                 }
                 showDialogOnline();
                 if(HoTroXuLyDataBase.loginCheck(DangNhap.this,name,pass)){
+                    XuLyServer.LoginReponsiveClass loginReponsiveClass = XuLyServer.getReponsiveLogin(DangNhap.this,name,pass);
+                    if(loginReponsiveClass == null){
+                        Toast.makeText(DangNhap.this, "Đăng nhập online thất bại", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    XuLyServer.setDataToFile(DangNhap.this,KeyDatabase.LOGIN_INFOR_NAMEFILE,KeyDatabase.LOGIN_OFFLINE_TOKEN,loginReponsiveClass.access_token);
+                    XuLyServer.setDataToFile(DangNhap.this,KeyDatabase.LOGIN_INFOR_NAMEFILE,KeyDatabase.LOGIN_OFFLINE_NICKNAME,loginReponsiveClass.nickname);
+                    XuLyServer.setDataToFile(DangNhap.this,KeyDatabase.LOGIN_INFOR_NAMEFILE,KeyDatabase.LOGIN_OFFLINE_TIME,loginReponsiveClass.create_time);
+                    KeyDatabase.DATABASENAME_INFOR = loginReponsiveClass.nickname+".db";
                     Intent intent = new Intent(DangNhap.this, MainActivity.class);
                     startActivity(intent);
                 }else {
