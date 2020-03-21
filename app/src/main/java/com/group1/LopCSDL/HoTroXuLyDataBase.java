@@ -12,11 +12,7 @@ import android.widget.Toast;
 import com.group1.expendituremanagement.DangNhap;
 import com.group1.expendituremanagement.MainActivity;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class HoTroXuLyDataBase {
 
@@ -106,7 +102,7 @@ public class HoTroXuLyDataBase {
     }
 
     public static boolean addChiTieu(XuLyDatabase xuLyDatabase, ThongTinChiTieu chiTieu){
-        String themDLChiTieu = "INSERT INTO "+KeyDatabase.TABLENAME_CHITIEU+" VALUES (NULL, ?, ?, ?, ?, ?,?)";
+        String themDLChiTieu = "INSERT INTO "+KeyDatabase.TABLENAME_CHITIEU+" VALUES (NULL, ?, ?, ?, ?, ?)";
         try {
             SQLiteStatement sqLiteStatement = xuLyDatabase.getWritableDatabase().compileStatement(themDLChiTieu);
             sqLiteStatement.clearBindings();
@@ -161,49 +157,6 @@ public class HoTroXuLyDataBase {
             arrayList.add(thongTinChiTieuu);
         }
         return arrayList;
-    }
-    public static ArrayList<ThongTinChiTieu> layDLChiTieuByLoaiChiTieu(XuLyDatabase xuLyDatabase, String loaigiaodich, String date){
-        ArrayList<ThongTinChiTieu> arrayList = new ArrayList<>();
-        String query = "SELECT * FROM "+KeyDatabase.TABLENAME_CHITIEU + " WHERE loaiGiaoDich = '"+loaigiaodich+"' AND thoiGianGiaoDich  >= Datetime('"+date+" 00:00:00') and thoiGianGiaoDich <= Datetime('"+date+" 23:59:59')";
-        Cursor cursor = xuLyDatabase.traVeKQ(query);
-        while (cursor.moveToNext()){
-            ThongTinChiTieu thongTinChiTieuu = new ThongTinChiTieu();
-            thongTinChiTieuu.setId(cursor.getInt(0));
-            thongTinChiTieuu.setSoTien(cursor.getDouble(1));
-            thongTinChiTieuu.setLoaiGiaoDich(cursor.getString(2));
-            thongTinChiTieuu.setGhiChuGiaoDich(cursor.getString(3));
-            thongTinChiTieuu.setThoiGianGiaoDich(cursor.getString(4));
-            thongTinChiTieuu.setDiaDiem(cursor.getString(5));
-            thongTinChiTieuu.setSoLuong(cursor.getInt(6));
-            arrayList.add(thongTinChiTieuu);
-        }
-        return arrayList;
-    }
-
-    public static ArrayList<LoaiChiTieu> getThongLoaiChiTieu(XuLyDatabase xuLyDatabase,ArrayList<String> loaiGD, String date){
-        ArrayList<LoaiChiTieu> list = new ArrayList<>();
-        Log.d("TAG", "ArrayListString: "+loaiGD.size());
-        for (String item : loaiGD){
-            ArrayList<ThongTinChiTieu> listDS = layDLChiTieuByLoaiChiTieu(xuLyDatabase,item,date);
-            Log.d("TAG", "layDLChiTieuByLoaiChiTieu: "+listDS.size());
-            LoaiChiTieu loaiChiTieu = new LoaiChiTieu();
-            loaiChiTieu.loaichitieu = item;
-            long money =0;
-            for (ThongTinChiTieu item2 : listDS){
-                money += item2.getSoTien();
-                try {
-                    Date date1 = new SimpleDateFormat("YYYY-MM-DD HH:MM:SS").parse(item2.getThoiGianGiaoDich());
-                    loaiChiTieu.end_buy_time = String.format("%02d",date1.getHours()) +":"+ String.format("%02d",date1.getMinutes()) +":"+ String.format("%02d",date1.getSeconds());
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-
-            }
-            loaiChiTieu.sotien = money;
-            list.add(loaiChiTieu);
-        }
-        Log.d("TAG", "ArrayList<LoaiChiTieu>: "+list.size());
-        return list;
     }
 
     public static ArrayList<ThongTinVayTra> layDLVayTra(XuLyDatabase xuLyDatabase){
