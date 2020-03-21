@@ -4,30 +4,74 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:orientation="vertical"
     android:background="#FFFFFF"
-    android:gravity="center">
-    
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
     <FrameLayout
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/flN">
+        android:layout_height="match_parent">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/flN">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <ListView
+                    android:id="@+id/lvDS"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"></ListView>
+            </LinearLayout>
+        </FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:orientation="horizontal"
+            android:background="#43A047">
+            <Button
+                android:id="@+id/btnAddChiTieu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/menu_button_add"
+                android:text="Chi tiêu"
+                android:textColor="#FFF"/>
+
+            <Button
+                android:id="@+id/btnAddVay"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:background="@drawable/menu_button_add"
+                android:text="Vay trả"
+                android:textColor="#FFF"/>
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/ivAdd1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/floasting"
+            android:padding="3dp"
+            android:src="@drawable/ic_add_circle_black_24dp" />
     </FrameLayout>
-    
+
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/naViGation"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        app:menu="@menu/content"
         android:background="@drawable/gradin_main"
         app:headerLayout="@layout/header"
-        >
-        
-        
-    </com.google.android.material.navigation.NavigationView>
+        app:menu="@menu/content">
 
+
+    </com.google.android.material.navigation.NavigationView>
 
 
 </androidx.drawerlayout.widget.DrawerLayout>
