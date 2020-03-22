@@ -72,6 +72,11 @@ public class FragmentAddVay extends Fragment {
             public void onClick(View v) {
                 XuLyDatabase xuLyDatabase = new XuLyDatabase(context, KeyDatabase.DATABASENAME_INFOR,null,1);
                 ThongTinVayTra thongTinVayTra = new ThongTinVayTra();
+                if(edtTGD.getText().toString().isEmpty() || STT.getText().toString().isEmpty() || edtNGD.getText().toString().isEmpty() ||
+                edtSTV.getText().toString().isEmpty() || GGD.getText().toString().isEmpty() || edtLS.getText().toString().isEmpty()){
+                    Toast.makeText(context, "Vui lòng nhập đủ thông tin", Toast.LENGTH_SHORT).show();
+                    return;
+                };
                 thongTinVayTra.setSotienvay(Integer.parseInt(edtSTV.getText().toString()));
                 thongTinVayTra.setSotiendatra(Integer.parseInt(STT.getText().toString()));
                 thongTinVayTra.setNguoigiaodich(edtNGD.getText().toString());

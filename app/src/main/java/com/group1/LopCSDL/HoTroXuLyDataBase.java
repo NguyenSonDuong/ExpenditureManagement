@@ -204,11 +204,12 @@ public class HoTroXuLyDataBase {
 
     public static long getChiTieuTheoThang(XuLyDatabase xuLyDatabase, String loaigiaodich, String date){
         ArrayList<ThongTinChiTieu> arrayList = new ArrayList<>();
-        String query = "SELECT * FROM "+KeyDatabase.TABLENAME_CHITIEU + " WHERE thoiGianGiaoDich  >= Datetime('"+date+" 00:00:00') and thoiGianGiaoDich <= Datetime('"+date+" 23:59:59')";
+        String query = "SELECT * FROM "+KeyDatabase.TABLENAME_CHITIEU + " WHERE thoiGianGiaoDich  >= Datetime('"+date+"-01 00:00:00') and thoiGianGiaoDich <= Datetime('"+date+"- 23:59:59')";
         Cursor cursor = xuLyDatabase.traVeKQ(query);
+        long add = 0;
         while (cursor.moveToNext()){
             ThongTinChiTieu thongTinChiTieuu = new ThongTinChiTieu();
-            thongTinChiTieuu.setSoTien(cursor.getDouble(1));
+            add+= cursor.getDouble(1);
             arrayList.add(thongTinChiTieuu);
         }
         return 1;
