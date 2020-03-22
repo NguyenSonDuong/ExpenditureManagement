@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -19,6 +20,7 @@ import androidx.fragment.app.Fragment;
 
 import com.group1.LopCSDL.HoTroXuLyDataBase;
 import com.group1.LopCSDL.KeyDatabase;
+import com.group1.LopCSDL.LopCreat_Time;
 import com.group1.LopCSDL.ThongTinChiTieu;
 import com.group1.LopCSDL.XuLyDatabase;
 import com.group1.expendituremanagement.R;
@@ -31,6 +33,7 @@ public class FragmentAddChiTieu  extends Fragment {
     EditText edit_soluong,edit_tientieu,edit_thoigian,edit_diadiem,edit_ghichu;
     Button bt_themtt;
     Spinner snipLoaiGD;
+
     public FragmentAddChiTieu(Context context) {
         this.context = context;
     }
@@ -91,6 +94,7 @@ public class FragmentAddChiTieu  extends Fragment {
         edit_ghichu = (EditText) view.findViewById(R.id.edit_ghichu);
         bt_themtt = (Button) view.findViewById(R.id.bt_themtt);
         snipLoaiGD = (Spinner) view.findViewById(R.id.snipLoaiGD);
+        edit_thoigian.setText(LopCreat_Time.TongHopThoiGian());
     }
 
 
