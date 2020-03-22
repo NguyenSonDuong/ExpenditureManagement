@@ -46,7 +46,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:background="@drawable/vien"
+            android:singleLine="true"
+            android:background="#FFF"
+            android:padding="10dp"
             android:textStyle="bold">
 
         </EditText>
@@ -57,6 +59,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:text="Mật khẩu"
+            android:layout_marginTop="10dp"
             android:textColor="@color/dang_nhap"
             android:textSize="15sp"
             android:textStyle="bold">
@@ -69,7 +72,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:background="@drawable/vien"
+            android:padding="10dp"
+            android:background="#FFF"
+            android:singleLine="true"
             android:inputType="textPassword"
             android:textSize="15sp"
             android:textStyle="bold">
@@ -78,11 +83,13 @@
 
         <Button
             android:id="@+id/bt_dangnhap"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/vien"
+            android:layout_marginTop="30dp"
+            android:background="#FFF"
             android:text="Đăng Nhập"
+            android:layout_marginHorizontal="20dp"
+            android:padding="10dp"
             android:textColor="@color/dang_nhap"
             android:textSize="15sp"
             android:textStyle="bold">
@@ -90,16 +97,16 @@
         </Button>
 
 
-        <Button
+        <TextView
             android:id="@+id/bt_quenmatkhau"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="15dp"
+            android:padding="10dp"
             android:layout_marginRight="20dp"
-            android:background="@drawable/vien"
             android:text="Quên mật khẩu?"
-            android:textColor="@color/dang_nhap"></Button>
+            android:textColor="#FFF"></TextView>
     </LinearLayout>
 
     <LinearLayout
@@ -114,22 +121,23 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="---------Hoặc---------"
-            android:textColor="@color/dang_nhap"
+            android:textColor="#FFF"
             android:textSize="15sp">
 
         </TextView>
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Tạo tài khoản"
             android:textSize="15sp"
-            android:textColor="@color/dang_nhap"
+            android:textColor="#FFF"
             android:textStyle="bold"
+            android:layout_marginHorizontal="20dp"
             android:layout_marginBottom="50dp"
-            android:background="@drawable/vien"
+            android:background="#43A047"
+            android:padding="10dp"
             android:id="@+id/bt_taotaikhoan">
-
         </Button>
     </LinearLayout>
 

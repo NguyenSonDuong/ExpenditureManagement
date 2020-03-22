@@ -4,6 +4,22 @@
     <color name="colorPrimaryDark">#2C2B2B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="background">#FF2C2B2B</color>
-    <color name="dang_nhap">#D50B0B</color>
+    <color name="dang_nhap">#F4511E</color>
     <color name="navigation">#E53935</color>
+
+    // màu chủ đạo
+    <color name="red">#E53935</color>
+    <color name="pink">#D81B60</color>
+    <color name="purple">#8E24AA</color>
+    <color name="purple_blue">#5E35B1</color>
+    <color name="blue">#3949AB</color>
+    <color name="light_blue">#1E88E5</color>
+    <color name="xLight_blue">#039BE5</color>
+    <color name="tile">#00897B</color>
+    <color name="green">#43A047</color>
+    <color name="light_green">#7CB342</color>
+    <color name="yellow">#FDD835</color>
+    <color name="dark_yellow">#FFB300</color>
+    <color name="orange">#FB8C00</color>
+    <color name="dark_orange">#F4511E</color>
 </resources>

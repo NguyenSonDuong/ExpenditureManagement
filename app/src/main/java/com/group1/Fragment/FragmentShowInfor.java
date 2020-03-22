@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import com.group1.LopCSDL.HoTroXuLyDataBase;
 import com.group1.LopCSDL.KeyDatabase;
 import com.group1.LopCSDL.LoaiChiTieu;
+import com.group1.LopCSDL.LopCreat_Time;
 import com.group1.LopCSDL.XuLyDatabase;
 import com.group1.adapter.LoaiChiTieuAdapter;
 import com.group1.expendituremanagement.R;
@@ -39,7 +40,7 @@ public class FragmentShowInfor extends Fragment {
         View view = LayoutInflater.from(context).inflate(R.layout.show_infor,container,false);
         init(view);
         XuLyDatabase xuLyDatabase = new XuLyDatabase(context, KeyDatabase.DATABASENAME_INFOR,null,1);
-        ArrayList<LoaiChiTieu> list = HoTroXuLyDataBase.getThongLoaiChiTieu(xuLyDatabase,KeyDatabase.listLoaiGiaoDich());
+        ArrayList<LoaiChiTieu> list = HoTroXuLyDataBase.getThongLoaiChiTieu(xuLyDatabase,KeyDatabase.listLoaiGiaoDich(), LopCreat_Time.ngayThang());
         LoaiChiTieuAdapter loaiChiTieuAdapter = new LoaiChiTieuAdapter(list,context);
         listView.setAdapter(loaiChiTieuAdapter);
         return view;

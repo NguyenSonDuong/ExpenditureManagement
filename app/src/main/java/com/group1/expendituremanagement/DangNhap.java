@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.group1.LopCSDL.HoTroXuLyDataBase;
@@ -18,7 +19,8 @@ import com.group1.server.XuLyServer;
 
 public class DangNhap extends AppCompatActivity {
     EditText edit_nickname, edit_password;
-    Button bt_dangnhap, bt_quenmatkhau, bt_taotaikhoan;
+    Button bt_dangnhap, bt_taotaikhoan;
+    TextView bt_quenmatkhau;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +51,6 @@ public class DangNhap extends AppCompatActivity {
                     Toast.makeText(DangNhap.this, "Vui lòng nhập đầy đủ dữ liện", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                showDialogOnline();
                 if(HoTroXuLyDataBase.loginCheck(DangNhap.this,name,pass)){
                     XuLyServer.LoginReponsiveClass loginReponsiveClass = XuLyServer.getReponsiveLogin(DangNhap.this,name,pass);
                     if(loginReponsiveClass == null){
@@ -63,7 +64,25 @@ public class DangNhap extends AppCompatActivity {
                     Intent intent = new Intent(DangNhap.this, MainActivity.class);
                     startActivity(intent);
                 }else {
-                    Toast.makeText(DangNhap.this, "Tài khoản và mật khẩu không đúng", Toast.LENGTH_SHORT).show();
+                    XuLyServer.LoginReponsiveClass loginReponsiveClass = XuLyServer.getReponsiveLogin(DangNhap.this,name,pass);
+                    if(loginReponsiveClass == null){
+                        Toast.makeText(DangNhap.this, "Đăng nhập online thất bại", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    XuLyDatabase xuLyDatabase = new XuLyDatabase(DangNhap.this, KeyDatabase.DATABASENAME,null, 1);
+                    boolean re = HoTroXuLyDataBase.registerUserSQLLite(xuLyDatabase,name,pass,"",0,"");
+                    if(re){
+                        Toast.makeText(DangNhap.this, "Đã đăng ký tài khoản online vào nội bộ", Toast.LENGTH_SHORT).show();
+                        XuLyServer.setDataToFile(DangNhap.this,KeyDatabase.LOGIN_INFOR_NAMEFILE,KeyDatabase.LOGIN_OFFLINE_TOKEN,loginReponsiveClass.access_token);
+                        XuLyServer.setDataToFile(DangNhap.this,KeyDatabase.LOGIN_INFOR_NAMEFILE,KeyDatabase.LOGIN_OFFLINE_NICKNAME,loginReponsiveClass.nickname);
+                        XuLyServer.setDataToFile(DangNhap.this,KeyDatabase.LOGIN_INFOR_NAMEFILE,KeyDatabase.LOGIN_OFFLINE_TIME,loginReponsiveClass.create_time);
+                        KeyDatabase.DATABASENAME_INFOR = loginReponsiveClass.nickname+".db";
+                        SyncData.Synch(DangNhap.this);
+                        Intent intent = new Intent(DangNhap.this, MainActivity.class);
+                        startActivity(intent);
+                    }else {
+                        Toast.makeText(DangNhap.this, "Đăng ký tài khoản thất bại trên nội bộ", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
