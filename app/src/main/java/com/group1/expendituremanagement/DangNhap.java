@@ -62,7 +62,6 @@ public class DangNhap extends AppCompatActivity {
                     XuLyServer.LoginReponsiveClass loginReponsiveClass = XuLyServer.getReponsiveLogin(DangNhap.this,name,pass);
                     if(loginReponsiveClass == null){
                         Toast.makeText(DangNhap.this, "Đăng nhập online thất bại", Toast.LENGTH_SHORT).show();
-                        return;
                     }
                     XuLyServer.setDataToFile(DangNhap.this,KeyDatabase.LOGIN_INFOR_NAMEFILE,KeyDatabase.LOGIN_OFFLINE_TOKEN,loginReponsiveClass.access_token);
                     XuLyServer.setDataToFile(DangNhap.this,KeyDatabase.LOGIN_INFOR_NAMEFILE,KeyDatabase.LOGIN_OFFLINE_NICKNAME,loginReponsiveClass.nickname);

@@ -57,7 +57,7 @@ public class FragmentAddChiTieu  extends Fragment {
         bt_themtt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "OK: "+snipLoaiGD.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, "OK: "+snipLoaiGD.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
                 XuLyDatabase xuLyDatabase = new XuLyDatabase(context, KeyDatabase.DATABASENAME_INFOR,null,1);
                 ThongTinChiTieu thongTinChiTieu = new ThongTinChiTieu();
                 thongTinChiTieu.setSoTien(Double.parseDouble(edit_tientieu.getText().toString()));
