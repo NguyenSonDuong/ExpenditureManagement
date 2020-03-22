@@ -26,7 +26,7 @@
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Số tiền đã vay: "
+            android:text="Số tiền đi vay/cho vay: "
             android:layout_marginHorizontal="40dp"/>
 
         <EditText
@@ -58,7 +58,7 @@
             android:layout_marginHorizontal="40dp"
             android:singleLine="true"
             android:inputType="number"
-            android:hint="Số tiền trả">
+            android:hint="Số tiền đã trả">
 
         </EditText>
         <TextView

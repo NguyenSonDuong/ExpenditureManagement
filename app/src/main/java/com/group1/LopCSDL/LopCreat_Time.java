@@ -19,6 +19,26 @@ public class LopCreat_Time {
         return ngayTN;
     }
 
+    public static String thangNamHienTai(){
+        calendar  = Calendar.getInstance();
+        calendar.setTimeZone(TimeZone.getTimeZone("Asia/Ho_Chi_Minh"));
+        int nam = calendar.get(Calendar.YEAR);
+        int thang = calendar.get(Calendar.MONTH)+1 ;
+        String tnHienTai = String.format("%04d",nam) +"-"+ String.format("%02d",thang);
+        return tnHienTai;
+    }
+
+    public static String NamHienTai(){
+        calendar  = Calendar.getInstance();
+        calendar.setTimeZone(TimeZone.getTimeZone("Asia/Ho_Chi_Minh"));
+        int nam = calendar.get(Calendar.YEAR);
+
+        String namHienTai = String.format("%04d",nam);
+        return namHienTai;
+    }
+
+
+
     public static String gioPhutGiay(){
         calendar  = Calendar.getInstance();
         calendar.setTimeZone(TimeZone.getTimeZone("Asia/Ho_Chi_Minh"));

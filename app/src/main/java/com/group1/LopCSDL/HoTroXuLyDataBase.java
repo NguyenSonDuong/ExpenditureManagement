@@ -202,17 +202,142 @@ public class HoTroXuLyDataBase {
         return arrayList;
     }
 
-    public static long getChiTieuTheoThang(XuLyDatabase xuLyDatabase, String loaigiaodich, String date){
-        ArrayList<ThongTinChiTieu> arrayList = new ArrayList<>();
-        String query = "SELECT * FROM "+KeyDatabase.TABLENAME_CHITIEU + " WHERE thoiGianGiaoDich  >= Datetime('"+date+"-01 00:00:00') and thoiGianGiaoDich <= Datetime('"+date+"- 23:59:59')";
+    public static long getChiTieuTheoNgay(XuLyDatabase xuLyDatabase, String date){
+        long tongTien = 0;
+
+
+        String query = "SELECT * FROM "+KeyDatabase.TABLENAME_CHITIEU + " WHERE thoiGianGiaoDich  >= Datetime('"+date+" 00:00:01') and thoiGianGiaoDich <= Datetime('"+date+" 23:58:59')";
         Cursor cursor = xuLyDatabase.traVeKQ(query);
-        long add = 0;
         while (cursor.moveToNext()){
-            ThongTinChiTieu thongTinChiTieuu = new ThongTinChiTieu();
-            add+= cursor.getDouble(1);
-            arrayList.add(thongTinChiTieuu);
+            tongTien += cursor.getDouble(1);
         }
-        return 1;
+        return tongTien;
+    }
+
+    public static long getChiTieuTheoThang(XuLyDatabase xuLyDatabase, String date){
+        String[] dl = date.split("-");
+        int nam = Integer.parseInt(dl[0]);
+        int thang = Integer.parseInt(dl[1]);
+        int tam = kiemTraThang(thang, nam);
+        long tongTien = 0;
+
+        ArrayList<ThongTinChiTieu> arrayList = new ArrayList<>();
+
+        String query = "SELECT * FROM "+KeyDatabase.TABLENAME_CHITIEU + " WHERE thoiGianGiaoDich  >= Datetime('"+date+"-01 00:00:00') and thoiGianGiaoDich <= Datetime('"+date+"-"+tam+" 23:59:59')";
+        Cursor cursor = xuLyDatabase.traVeKQ(query);
+        while (cursor.moveToNext()){
+            tongTien += cursor.getDouble(1);
+        }
+        return tongTien;
+    }
+
+    public static long getChiTieuTheoNam(XuLyDatabase xuLyDatabase, String date){
+        ArrayList<ThongTinChiTieu> arrayList = new ArrayList<>();
+        long tongTien = 0;
+
+        String query = "SELECT * FROM "+KeyDatabase.TABLENAME_CHITIEU + " WHERE thoiGianGiaoDich  >= Datetime('"+date+"-01-01 00:00:00') and thoiGianGiaoDich <= Datetime('"+date+"-12-31 23:59:59')";
+        Cursor cursor = xuLyDatabase.traVeKQ(query);
+        while (cursor.moveToNext()){
+            tongTien += cursor.getDouble(1);
+        }
+        return tongTien;
+
+    }
+
+    public static long getVayTheoNgay(XuLyDatabase xuLyDatabase, String date){
+        long tongTienVay = 0;
+
+        String query = "SELECT * FROM "+KeyDatabase.TABLENAME_VAY + " WHERE thoiGianGiaoDich  >= Datetime('"+date+" 00:00:01') and thoiGianGiaoDich <= Datetime('"+date+" 23:58:59') and loaiGiaoDich = 'Đi vay'";
+        Cursor cursor = xuLyDatabase.traVeKQ(query);
+        while (cursor.moveToNext()){
+            tongTienVay += cursor.getDouble(1);
+        }
+        return tongTienVay;
+    }
+
+    public static long getVayTheoThang(XuLyDatabase xuLyDatabase, String date){
+        String[] dl = date.split("-");
+        int nam = Integer.parseInt(dl[0]);
+        int thang = Integer.parseInt(dl[1]);
+        int tam = kiemTraThang(thang, nam);
+        long tongTienVay = 0;
+
+
+        String query = "SELECT * FROM "+KeyDatabase.TABLENAME_VAY + " WHERE thoiGianGiaoDich  >= Datetime('"+date+"-01 00:00:00') and thoiGianGiaoDich <= Datetime('"+date+"-"+tam+" 23:59:59')  and loaiGiaoDich = 'Đi vay'";
+        Cursor cursor = xuLyDatabase.traVeKQ(query);
+        while (cursor.moveToNext()){
+            tongTienVay += cursor.getDouble(1);
+        }
+        return tongTienVay;
+    }
+
+    public static long getVayTheoNam(XuLyDatabase xuLyDatabase, String date){
+        long tongTienVay = 0;
+
+        String query = "SELECT * FROM "+KeyDatabase.TABLENAME_VAY + " WHERE thoiGianGiaoDich  >= Datetime('"+date+"-01-01 00:00:00') and thoiGianGiaoDich <= Datetime('"+date+"-12-31 23:59:59') and loaiGiaoDich = 'Đi vay'";
+        Cursor cursor = xuLyDatabase.traVeKQ(query);
+        while (cursor.moveToNext()){
+            tongTienVay += cursor.getDouble(1);
+        }
+        return tongTienVay;
+
+    }
+
+    public static long getTraTheoNgay(XuLyDatabase xuLyDatabase, String date){
+        long tongTienTra = 0;
+
+
+        String query = "SELECT * FROM "+KeyDatabase.TABLENAME_VAY + " WHERE thoiGianGiaoDich  >= Datetime('"+date+" 00:00:01') and thoiGianGiaoDich <= Datetime('"+date+" 23:58:59')  and loaiGiaoDich = 'Cho vay'";
+        Cursor cursor = xuLyDatabase.traVeKQ(query);
+        while (cursor.moveToNext()){
+            tongTienTra += cursor.getDouble(1);
+        }
+        return tongTienTra;
+    }
+
+    public static long getTraTheoThang(XuLyDatabase xuLyDatabase, String date){
+        String[] dl = date.split("-");
+        int nam = Integer.parseInt(dl[0]);
+        int thang = Integer.parseInt(dl[1]);
+        int tam = kiemTraThang(thang, nam);
+        long tongTienTra = 0;
+
+
+        String query = "SELECT * FROM "+KeyDatabase.TABLENAME_VAY + " WHERE thoiGianGiaoDich  >= Datetime('"+date+"-01 00:00:00') and thoiGianGiaoDich <= Datetime('"+date+"-"+tam+" 23:59:59') and loaiGiaoDich = 'Cho vay'";
+        Cursor cursor = xuLyDatabase.traVeKQ(query);
+        while (cursor.moveToNext()){
+            tongTienTra += cursor.getDouble(1);
+        }
+        return tongTienTra;
+    }
+
+    public static long getTraTheoNam(XuLyDatabase xuLyDatabase, String date){
+        long tongTienTra = 0;
+
+        String query = "SELECT * FROM "+KeyDatabase.TABLENAME_VAY + " WHERE thoiGianGiaoDich  >= Datetime('"+date+"-01-01 00:00:00') and thoiGianGiaoDich <= Datetime('"+date+"-12-31 23:59:59') and loaiGiaoDich = 'Cho vay'";
+        Cursor cursor = xuLyDatabase.traVeKQ(query);
+        while (cursor.moveToNext()){
+            tongTienTra += cursor.getDouble(1);
+        }
+        return tongTienTra;
+
+    }
+
+    public static int kiemTraThang(int thang, int nam){
+        if(ck(thang, 1) && ck(thang , 3) && ck(thang, 5) && ck(thang, 7) && ck(thang, 10) && ck(thang, 12)){
+            return 31;
+        }if(ck(thang, 2)){
+            if((nam % 400 == 0) && (nam % 100 == 0)){
+                return 29;
+            }else{
+                return 28;
+            }
+        }else {
+            return 30;
+        }
+    }
+    public static boolean ck(int a, int b){
+        return a==b;
     }
 
     public static ArrayList<LoaiChiTieu> getThongLoaiChiTieu(XuLyDatabase xuLyDatabase,ArrayList<String> loaiGD, String date){

@@ -57,27 +57,15 @@ public class FragmentAddChiTieu  extends Fragment {
         bt_themtt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(edit_diadiem.getText().toString().isEmpty() || edit_thoigian.getText().toString().isEmpty() ||
-                edit_ghichu.getText().toString().isEmpty() || edit_tientieu.getText().toString().isEmpty() ){
-                    Toast.makeText(context, "Vui lòng nhập đầy đủ dữ liệu", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+                //Toast.makeText(context, "OK: "+snipLoaiGD.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
                 XuLyDatabase xuLyDatabase = new XuLyDatabase(context, KeyDatabase.DATABASENAME_INFOR,null,1);
                 ThongTinChiTieu thongTinChiTieu = new ThongTinChiTieu();
-                try {
-                    thongTinChiTieu.setSoTien(Double.parseDouble(edit_tientieu.getText().toString()));
-                }catch (Exception ex){
-                    thongTinChiTieu.setSoTien(0);
-                }
+                thongTinChiTieu.setSoTien(Double.parseDouble(edit_tientieu.getText().toString()));
                 thongTinChiTieu.setLoaiGiaoDich(snipLoaiGD.getSelectedItem().toString());
                 thongTinChiTieu.setDiaDiem(edit_diadiem.getText().toString());
                 thongTinChiTieu.setThoiGianGiaoDich(edit_thoigian.getText().toString());
                 thongTinChiTieu.setGhiChuGiaoDich(edit_ghichu.getText().toString());
-                try {
-                    thongTinChiTieu.setSoLuong(Integer.parseInt(edit_soluong.getText().toString()));
-                }catch (Exception ex){
-                    thongTinChiTieu.setSoLuong(0);
-                }
+                thongTinChiTieu.setSoLuong(Integer.parseInt(edit_soluong.getText().toString()));
                 boolean re = HoTroXuLyDataBase.addChiTieu(xuLyDatabase,thongTinChiTieu);
                 if(re){
                     Toast.makeText(context, "Thêm dữ liệu thành công", Toast.LENGTH_SHORT).show();

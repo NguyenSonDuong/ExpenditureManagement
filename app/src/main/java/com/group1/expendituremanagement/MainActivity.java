@@ -30,6 +30,8 @@ import com.group1.Fragment.FragmentAddChiTieu;
 import com.group1.Fragment.FragmentAddVay;
 import com.group1.Fragment.FragmentInformationUser;
 import com.group1.Fragment.FragmentShowInfor;
+import com.group1.Fragment.Fragment_Thong_Ke_Chi_Tieu;
+import com.group1.Fragment.Fragment_Thong_Ke_Vay_Tra;
 import com.group1.LopCSDL.HoTroXuLyDataBase;
 import com.group1.LopCSDL.KeyDatabase;
 import com.group1.LopCSDL.LopCreat_Time;
@@ -55,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
     FragmentAddVay fragmentAddVay;
     FragmentShowInfor fragmentShowInfor;
     FragmentInformationUser fragmentInformationUser;
+    Fragment_Thong_Ke_Chi_Tieu fragment_thong_ke_chi_tieu;
+    Fragment_Thong_Ke_Vay_Tra fragment_thong_ke_vay_tra;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,15 +71,33 @@ public class MainActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                if(menuItem.getItemId() == R.id.itemttNguoiDung){
-                    addFragment(fragmentInformationUser);
-                    drowMain.closeDrawer(Gravity.LEFT);
-                }else if(menuItem.getItemId() == R.id.itemDangXuat){
-                    XuLyServer.setDataToFile(MainActivity.this,KeyDatabase.LOGIN_INFOR_NAMEFILE,KeyDatabase.LOGIN_OFFLINE_TOKEN,"");
-                    Intent intent = new Intent(MainActivity.this,DangNhap.class);
-                    startActivity(intent);
-                    finish();
+
+                switch (menuItem.getItemId()){
+                    case  R.id.itemttNguoiDung:
+                        addFragment(fragmentInformationUser);
+                        drowMain.closeDrawer(Gravity.LEFT);
+                        break;
+                    case R.id.itemDangXuat:
+                        XuLyServer.setDataToFile(MainActivity.this,KeyDatabase.LOGIN_INFOR_NAMEFILE,KeyDatabase.LOGIN_OFFLINE_TOKEN,"");
+                        Intent intent = new Intent(MainActivity.this,DangNhap.class);
+                        startActivity(intent);
+                        finish();
+                        break;
+
+                    case R.id.itemChiTieu:
+                        addFragment(fragment_thong_ke_chi_tieu);
+                        drowMain.closeDrawer(Gravity.LEFT);
+                        break;
+
+                    case R.id.itemVayTra:
+                        addFragment(fragment_thong_ke_vay_tra);
+                        drowMain.closeDrawer(Gravity.LEFT);
+                        break;
+
+                    default:
+                        break;
                 }
+
                 return false;
             }
         });
@@ -98,6 +120,8 @@ public class MainActivity extends AppCompatActivity {
                 addFragment(fragmentAddChiTieu);
             }
         });
+
+
     }
 
     private void addFragment(Fragment fragment){
@@ -111,6 +135,8 @@ public class MainActivity extends AppCompatActivity {
         fragmentAddVay = new FragmentAddVay(this);
         fragmentShowInfor = new FragmentShowInfor(this);
         fragmentInformationUser = new FragmentInformationUser(this);
+        fragment_thong_ke_chi_tieu = new Fragment_Thong_Ke_Chi_Tieu(this);
+        fragment_thong_ke_vay_tra = new Fragment_Thong_Ke_Vay_Tra(this);
         flN = (FrameLayout) findViewById(R.id.flN);
         fragmentManager = getSupportFragmentManager();
         btnAddChiTieu = (Button) findViewById(R.id.btnAddChiTieu);
