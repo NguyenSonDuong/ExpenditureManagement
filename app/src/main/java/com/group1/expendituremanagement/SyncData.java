@@ -35,6 +35,7 @@ public class SyncData extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Synch(SyncData.this);
+                finish();
             }
         });
     }

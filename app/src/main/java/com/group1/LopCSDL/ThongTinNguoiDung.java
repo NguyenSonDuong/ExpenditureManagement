@@ -6,12 +6,12 @@ public class ThongTinNguoiDung {
     private double gioiTinh;
     private String ngaySinh;
     private String passWord;
-    private LopCreat_Time Create_time;
+    private String Create_time;
 
     public ThongTinNguoiDung() {
     }
 
-    public ThongTinNguoiDung(String nickName, String email, double gioiTinh, String ngaySinh, String passWord, LopCreat_Time create_time) {
+    public ThongTinNguoiDung(String nickName, String email, double gioiTinh, String ngaySinh, String passWord, String create_time) {
         this.nickName = nickName;
         this.email = email;
         this.gioiTinh = gioiTinh;
@@ -60,11 +60,11 @@ public class ThongTinNguoiDung {
         this.passWord = passWord;
     }
 
-    public LopCreat_Time getCreate_time() {
+    public String getCreate_time() {
         return Create_time;
     }
 
-    public void setCreate_time(LopCreat_Time create_time) {
+    public void setCreate_time(String create_time) {
         Create_time = create_time;
     }
 }

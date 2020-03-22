@@ -3,6 +3,7 @@ package com.group1.expendituremanagement;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -11,6 +12,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -26,12 +28,14 @@ import android.widget.Toast;
 import com.google.android.material.navigation.NavigationView;
 import com.group1.Fragment.FragmentAddChiTieu;
 import com.group1.Fragment.FragmentAddVay;
+import com.group1.Fragment.FragmentInformationUser;
 import com.group1.Fragment.FragmentShowInfor;
 import com.group1.LopCSDL.HoTroXuLyDataBase;
 import com.group1.LopCSDL.KeyDatabase;
 import com.group1.LopCSDL.LopCreat_Time;
 import com.group1.LopCSDL.ThongTinVayTra;
 import com.group1.LopCSDL.XuLyDatabase;
+import com.group1.server.XuLyServer;
 
 import java.util.ArrayList;
 
@@ -46,9 +50,11 @@ public class MainActivity extends AppCompatActivity {
     NavigationView navigationView;
     ImageView ivAdd;
     Button btnAddVay,btnAddChiTieu;
+    DrawerLayout drowMain;
     FragmentAddChiTieu fragmentAddChiTieu;
     FragmentAddVay fragmentAddVay;
     FragmentShowInfor fragmentShowInfor;
+    FragmentInformationUser fragmentInformationUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,8 +68,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 if(menuItem.getItemId() == R.id.itemttNguoiDung){
-                    Intent intent = new Intent(MainActivity.this,BackupData.class);
+                    addFragment(fragmentInformationUser);
+                    drowMain.closeDrawer(Gravity.LEFT);
+                }else if(menuItem.getItemId() == R.id.itemDangXuat){
+                    XuLyServer.setDataToFile(MainActivity.this,KeyDatabase.LOGIN_INFOR_NAMEFILE,KeyDatabase.LOGIN_OFFLINE_TOKEN,"");
+                    Intent intent = new Intent(MainActivity.this,DangNhap.class);
                     startActivity(intent);
+                    finish();
                 }
                 return false;
             }
@@ -99,13 +110,16 @@ public class MainActivity extends AppCompatActivity {
         fragmentAddChiTieu = new FragmentAddChiTieu(this);
         fragmentAddVay = new FragmentAddVay(this);
         fragmentShowInfor = new FragmentShowInfor(this);
+        fragmentInformationUser = new FragmentInformationUser(this);
         flN = (FrameLayout) findViewById(R.id.flN);
         fragmentManager = getSupportFragmentManager();
         btnAddChiTieu = (Button) findViewById(R.id.btnAddChiTieu);
         btnAddVay = (Button) findViewById(R.id.btnAddVay);
         navigationView = (NavigationView) findViewById(R.id.naViGation);
         ivAdd = (ImageView) findViewById(R.id.ivAdd1);
+        drowMain = (DrawerLayout) findViewById(R.id.drowMain);
         addFragment(fragmentShowInfor);
+
         XuLyDatabase xuLyDatabase = new XuLyDatabase(this, KeyDatabase.DATABASENAME_INFOR,null,1);
         ArrayList<ThongTinVayTra> list = HoTroXuLyDataBase.layDLVayTra(xuLyDatabase);
     }

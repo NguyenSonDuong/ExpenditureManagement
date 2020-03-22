@@ -28,6 +28,13 @@ public class DangNhap extends AppCompatActivity {
         setContentView(R.layout.activity_dang_nhap);
         setWidth();
         setEvenDangNhap();
+        String token = XuLyServer.getTokenOffline(this);
+        if(!token.isEmpty() && token != null){
+            KeyDatabase.DATABASENAME_INFOR = XuLyServer.getNicknameOffline(this)+".db";
+            Intent intent = new Intent(DangNhap.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
         setEvenTaoTaiKhoan();
     }
 
@@ -63,6 +70,7 @@ public class DangNhap extends AppCompatActivity {
                     KeyDatabase.DATABASENAME_INFOR = loginReponsiveClass.nickname+".db";
                     Intent intent = new Intent(DangNhap.this, MainActivity.class);
                     startActivity(intent);
+                    finish();
                 }else {
                     XuLyServer.LoginReponsiveClass loginReponsiveClass = XuLyServer.getReponsiveLogin(DangNhap.this,name,pass);
                     if(loginReponsiveClass == null){

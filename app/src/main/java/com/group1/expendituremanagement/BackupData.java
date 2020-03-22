@@ -56,6 +56,7 @@ public class BackupData extends AppCompatActivity {
                     XuLyServer.ReponsiveFalse.Rootobject reponsiveFalse = (XuLyServer.ReponsiveFalse.Rootobject) obj;
                     Toast.makeText(BackupData.this, "Dữ liệu đã được backup trước đó: "+reponsiveFalse.data.length, Toast.LENGTH_SHORT).show();
                 }
+                finish();
             }
         });
     }

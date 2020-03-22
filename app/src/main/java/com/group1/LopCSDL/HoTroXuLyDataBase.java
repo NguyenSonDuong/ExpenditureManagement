@@ -83,6 +83,28 @@ public class HoTroXuLyDataBase {
 //                "trangThai VARCHAR(100))");
 //    }
 
+    public static ThongTinNguoiDung getInforUser(XuLyDatabase xuLyDatabase, String nickname){
+        String query = "SELECT * FROM "+ KeyDatabase.TABLENAME_NGUOIDUNG+" WHERE nickName = '"+nickname+"'";
+        ThongTinNguoiDung thongTinNguoiDung = new ThongTinNguoiDung();
+        try{
+            Cursor cursor = xuLyDatabase.traVeKQ(query);
+            if(cursor.getCount()==1){
+                cursor.moveToFirst();
+                thongTinNguoiDung.setNickName(cursor.getString(0));
+                thongTinNguoiDung.setGioiTinh(cursor.getDouble(2));
+                thongTinNguoiDung.setCreate_time(cursor.getString(5));
+                thongTinNguoiDung.setEmail(cursor.getString(1));
+                thongTinNguoiDung.setNgaySinh(cursor.getString(3));
+                thongTinNguoiDung.setPassWord(cursor.getString(4));
+                return thongTinNguoiDung;
+            }else {
+                return null;
+            }
+        }catch (Exception ex){
+            return null;
+        }
+
+    }
     public static boolean registerUserSQLLite(XuLyDatabase xuLyDatabase, String nickName, String passWordl, String email, int gioiTinh, String ngaySinh){
         String themDLND = "INSERT INTO "+KeyDatabase.TABLENAME_NGUOIDUNG+" VALUES(?, ?, ?, ?, ? ,?)";
         try{
@@ -178,6 +200,18 @@ public class HoTroXuLyDataBase {
             arrayList.add(thongTinChiTieuu);
         }
         return arrayList;
+    }
+
+    public static long getChiTieuTheoThang(XuLyDatabase xuLyDatabase, String loaigiaodich, String date){
+        ArrayList<ThongTinChiTieu> arrayList = new ArrayList<>();
+        String query = "SELECT * FROM "+KeyDatabase.TABLENAME_CHITIEU + " WHERE thoiGianGiaoDich  >= Datetime('"+date+" 00:00:00') and thoiGianGiaoDich <= Datetime('"+date+" 23:59:59')";
+        Cursor cursor = xuLyDatabase.traVeKQ(query);
+        while (cursor.moveToNext()){
+            ThongTinChiTieu thongTinChiTieuu = new ThongTinChiTieu();
+            thongTinChiTieuu.setSoTien(cursor.getDouble(1));
+            arrayList.add(thongTinChiTieuu);
+        }
+        return 1;
     }
 
     public static ArrayList<LoaiChiTieu> getThongLoaiChiTieu(XuLyDatabase xuLyDatabase,ArrayList<String> loaiGD, String date){

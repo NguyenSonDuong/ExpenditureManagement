@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     android:gravity="center"
+    android:id="@+id/drowMain"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -57,7 +58,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@drawable/gradin_main"
         app:headerLayout="@layout/header"
         app:menu="@menu/content">
 

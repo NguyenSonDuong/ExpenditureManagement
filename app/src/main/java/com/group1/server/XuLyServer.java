@@ -367,6 +367,11 @@ public class XuLyServer {
         return chiTieuRequestClass;
     }
 
+    public static String getNicknameOffline(Context context){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(KeyDatabase.LOGIN_INFOR_NAMEFILE,Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString(KeyDatabase.LOGIN_OFFLINE_NICKNAME,"");
+        return token;
+    }
     public static String getTokenOffline(Context context){
         SharedPreferences sharedPreferences = context.getSharedPreferences(KeyDatabase.LOGIN_INFOR_NAMEFILE,Context.MODE_PRIVATE);
         String token = sharedPreferences.getString(KeyDatabase.LOGIN_OFFLINE_TOKEN,"");
