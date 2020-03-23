@@ -72,8 +72,8 @@ public class FragmentShowInforVayTra extends Fragment {
             }
         });
 
-        tvSoTienCV.setText(XuLyServer.formatMoney(HoTroXuLyDataBase.getVayTheoNgay(xuLyDatabase, LopCreat_Time.ngayThang())));
-        tvSoTienDV.setText(XuLyServer.formatMoney(HoTroXuLyDataBase.getTraTheoNgay(xuLyDatabase, LopCreat_Time.ngayThang())));
+        tvSoTienDV.setText(XuLyServer.formatMoney(HoTroXuLyDataBase.getVayTheoNgay(xuLyDatabase, LopCreat_Time.ngayThang())));
+        tvSoTienCV.setText(XuLyServer.formatMoney(HoTroXuLyDataBase.getTraTheoNgay(xuLyDatabase, LopCreat_Time.ngayThang())));
         return view;
     }
 
