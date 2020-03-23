@@ -9,7 +9,6 @@
   * hiển thị chi tiêu theo ngày trực tiếp trên màn hình
   * Đồng bộ dữ liệu với máy chủ của app
   * sao lưu dữ liệu hiện có trên máy chủ
-  * Đặt giới hạn chi tiêu theo ngày/tháng/năm
   * Updating...
 ## Các thư việc hỗ trợ được tải về:
   * com.android.support:support-v4:27.0.2
