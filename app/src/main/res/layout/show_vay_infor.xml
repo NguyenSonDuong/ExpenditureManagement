@@ -75,7 +75,7 @@
                 android:id="@+id/tvVayTra"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Đã vay"
+                android:text="Đi vay"
                 android:paddingLeft="6dp"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold"
@@ -103,39 +103,13 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:paddingLeft="6dp"
                     android:text="300.000"
-                    android:paddingLeft="6dp"
-                    android:textColor="#FFFFFF"/>
+                    android:textColor="#FFFFFF" />
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingRight="5dp"
-                android:paddingBottom="5dp"
-                android:paddingTop="5dp">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="Ghi chú"
-                    android:paddingLeft="6dp"
-                    android:textColor="#FFF"
-                    android:layout_weight="1"
-                    android:textStyle="bold"/>
-
-                <TextView
-                    android:id="@+id/tvGhiChuDV"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="Đi vay tiền , "
-                    android:paddingLeft="6dp"
-                    android:textColor="#FFFFFF"/>
-
-            </LinearLayout>
         </LinearLayout>
         <ImageView
             android:id="@+id/ivShowVayTraDV"
@@ -201,33 +175,7 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingRight="5dp"
-                android:paddingBottom="5dp"
-                android:paddingTop="5dp">
 
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="Ghi chú"
-                    android:paddingLeft="6dp"
-                    android:textColor="#FFF"
-                    android:layout_weight="1"
-                    android:textStyle="bold"/>
-
-                <TextView
-                    android:id="@+id/tvGhiChuCV"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="Đi vay tiền , "
-                    android:paddingLeft="6dp"
-                    android:textColor="#FFFFFF"/>
-
-            </LinearLayout>
         </LinearLayout>
         <ImageView
             android:id="@+id/ivShowVayTraCV"
@@ -236,4 +184,8 @@
             android:layout_weight="0.5"
             android:src="@drawable/ic_more"/>
     </LinearLayout>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/lvDS"/>
 </LinearLayout>

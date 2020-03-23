@@ -89,12 +89,13 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="40dp"
             android:orientation="horizontal">
+
             <RadioButton
+                android:id="@+id/rdDiVay"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/rdDiVay"
                 android:checked="true"
-                android:text="Đi vay"/>
+                android:text="Đi vay" />
             <RadioButton
                 android:layout_marginLeft="30dp"
                 android:layout_width="wrap_content"

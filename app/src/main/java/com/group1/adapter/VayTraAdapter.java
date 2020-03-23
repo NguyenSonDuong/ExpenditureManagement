@@ -58,9 +58,6 @@ public class VayTraAdapter extends BaseAdapter {
 
             hoder.lnlMain = view.findViewById(R.id.lnlMain);
             hoder.tvName = view.findViewById(R.id.tvVayTra);
-            hoder.tvSoTien = view.findViewById(R.id.tvSoTien);
-            hoder.tvGhiChu = view.findViewById(R.id.tvGhiChu);
-            hoder.ivShowVayTra = view.findViewById(R.id.ivShowVayTra);
 
             view.setTag(hoder);
 

@@ -31,6 +31,7 @@ import com.group1.Fragment.FragmentAddChiTieu;
 import com.group1.Fragment.FragmentAddVay;
 import com.group1.Fragment.FragmentInformationUser;
 import com.group1.Fragment.FragmentShowInfor;
+import com.group1.Fragment.FragmentShowInforVayTra;
 import com.group1.Fragment.Fragment_Thong_Ke_Chi_Tieu;
 import com.group1.Fragment.Fragment_Thong_Ke_Vay_Tra;
 import com.group1.LopCSDL.HoTroXuLyDataBase;
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
     FragmentInformationUser fragmentInformationUser;
     Fragment_Thong_Ke_Chi_Tieu fragment_thong_ke_chi_tieu;
     Fragment_Thong_Ke_Vay_Tra fragment_thong_ke_vay_tra;
+    FragmentShowInforVayTra fragmentShowInforVayTra;
     private boolean iclick = false;
 
     @Override
@@ -122,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onLongClick(View v) {
                 iclick = true;
-                Toast.makeText(MainActivity.this, "Đụ mé", Toast.LENGTH_SHORT).show();
+                addFragment(fragmentShowInforVayTra);
                 return false;
             }
         });
@@ -156,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
         fragmentInformationUser = new FragmentInformationUser(this);
         fragment_thong_ke_chi_tieu = new Fragment_Thong_Ke_Chi_Tieu(this);
         fragment_thong_ke_vay_tra = new Fragment_Thong_Ke_Vay_Tra(this);
+        fragmentShowInforVayTra = new FragmentShowInforVayTra(this);
         flN = (FrameLayout) findViewById(R.id.flN);
         fragmentManager = getSupportFragmentManager();
         btnAddChiTieu = (Button) findViewById(R.id.btnAddChiTieu);
