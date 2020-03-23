@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".BackupData">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Đồng bộ dữ liệu"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hệ thống đồng bộ với cơ sở dữ liệu online"
+        android:textColor="#43A047"
+        android:gravity="center"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="35dp"
+        android:text="Khi bạn nhấn vào nút Synchronized đồng nghĩa với việc dữ liệu của bạn sẽ được chúng tôi tải về máy xin lưu ý hãy backup dữ liệu trước khi đồng bộ để đảm bảo dữ liệu dduwwocj lưu trữ đầy đủ"
+        android:gravity="center"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="35dp"
+        android:layout_marginTop="20dp"
+        android:text="Thời gian đồng bộ cuối cùng:"
+        android:gravity="center"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="35dp"
+        android:text="Chưa được đồng bộ"
+        android:gravity="center"
+        android:id="@+id/tvTime"
+        android:textColor="#FB8C00"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#FFF"
+        android:background="#7CB342"
+        android:text="Synchronized"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:id="@+id/btnSynch"
+        android:layout_marginHorizontal="35dp"
+        android:layout_marginTop="20dp"/>
+
+</LinearLayout>

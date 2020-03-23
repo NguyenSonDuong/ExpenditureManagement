@@ -5,18 +5,18 @@ public class ThongTinNguoiDung {
     private String email;
     private double gioiTinh;
     private String ngaySinh;
-    private String passWordl;
-    private LopCreat_Time Create_time;
+    private String passWord;
+    private String Create_time;
 
     public ThongTinNguoiDung() {
     }
 
-    public ThongTinNguoiDung(String nickName, String email, double gioiTinh, String ngaySinh, String passWordl, LopCreat_Time create_time) {
+    public ThongTinNguoiDung(String nickName, String email, double gioiTinh, String ngaySinh, String passWord, String create_time) {
         this.nickName = nickName;
         this.email = email;
         this.gioiTinh = gioiTinh;
         this.ngaySinh = ngaySinh;
-        this.passWordl = passWordl;
+        this.passWord = passWord;
         Create_time = create_time;
     }
 
@@ -52,19 +52,19 @@ public class ThongTinNguoiDung {
         this.ngaySinh = ngaySinh;
     }
 
-    public String getPassWordl() {
-        return passWordl;
+    public String getPassWord() {
+        return passWord;
     }
 
-    public void setPassWordl(String passWordl) {
-        this.passWordl = passWordl;
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
     }
 
-    public LopCreat_Time getCreate_time() {
+    public String getCreate_time() {
         return Create_time;
     }
 
-    public void setCreate_time(LopCreat_Time create_time) {
+    public void setCreate_time(String create_time) {
         Create_time = create_time;
     }
 }

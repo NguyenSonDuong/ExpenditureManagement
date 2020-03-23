@@ -2,31 +2,44 @@ package com.group1.LopCSDL;
 
 public class ThongTinVayTra {
 
-    private int id;
-    private double soTienVay;
-    private double soTienTra;
-    private String nguoiGiaoDich;
-    private String loaiGiaoDich;
-    private String ghiChuGiaoDich;
-    private String thoiGianGiaoDich;
-    private double laiSuat;
-    private String trangThai;
+    public int id ;
+    public long sotienvay ;
+    public long sotiendatra ;
+    public String hantra ;
+    public String nguoigiaodich ;
+    public String loaigiaodich ;
+    public String ghichugiaodich ;
+    public String thoigiangiaodich;
+    public long laisuat ;
+    public String trangthai ;
 
     public ThongTinVayTra() {
     }
 
-    public ThongTinVayTra(int id, double soTienVay, double soTienTra, String nguoiGiaoDich, String loaiGiaoDich, String ghiChuGiaoDich, String thoiGianGiaoDich, double laiSuat, String trangThai) {
+    public ThongTinVayTra(int id, long sotienvay, long sotiendatra, String hantra, String nguoigiaodich, String loaigiaodich, String ghichugiaodich, String thoigiangiaodich, long laisuat, String trangthai) {
         this.id = id;
-        this.soTienVay = soTienVay;
-        this.soTienTra = soTienTra;
-        this.nguoiGiaoDich = nguoiGiaoDich;
-        this.loaiGiaoDich = loaiGiaoDich;
-        this.ghiChuGiaoDich = ghiChuGiaoDich;
-        this.thoiGianGiaoDich = thoiGianGiaoDich;
-        this.laiSuat = laiSuat;
-        this.trangThai = trangThai;
+        this.sotienvay = sotienvay;
+        this.sotiendatra = sotiendatra;
+        this.hantra = hantra;
+        this.nguoigiaodich = nguoigiaodich;
+        this.loaigiaodich = loaigiaodich;
+        this.ghichugiaodich = ghichugiaodich;
+        this.thoigiangiaodich = thoigiangiaodich;
+        this.laisuat = laisuat;
+        this.trangthai = trangthai;
     }
 
+    public ThongTinVayTra(long sotienvay, long sotiendatra, String hantra, String nguoigiaodich, String loaigiaodich, String ghichugiaodich, String thoigiangiaodich, long laisuat, String trangthai) {
+        this.sotienvay = sotienvay;
+        this.sotiendatra = sotiendatra;
+        this.hantra = hantra;
+        this.nguoigiaodich = nguoigiaodich;
+        this.loaigiaodich = loaigiaodich;
+        this.ghichugiaodich = ghichugiaodich;
+        this.thoigiangiaodich = thoigiangiaodich;
+        this.laisuat = laisuat;
+        this.trangthai = trangthai;
+    }
 
     public int getId() {
         return id;
@@ -36,67 +49,75 @@ public class ThongTinVayTra {
         this.id = id;
     }
 
-    public double getSoTienVay() {
-        return soTienVay;
+    public long getSotienvay() {
+        return sotienvay;
     }
 
-    public void setSoTienVay(double soTienVay) {
-        this.soTienVay = soTienVay;
+    public void setSotienvay(long sotienvay) {
+        this.sotienvay = sotienvay;
     }
 
-    public double getSoTienTra() {
-        return soTienTra;
+    public long getSotiendatra() {
+        return sotiendatra;
     }
 
-    public void setSoTienTra(double soTienTra) {
-        this.soTienTra = soTienTra;
+    public void setSotiendatra(long sotiendatra) {
+        this.sotiendatra = sotiendatra;
     }
 
-    public String getNguoiGiaoDich() {
-        return nguoiGiaoDich;
+    public String getHantra() {
+        return hantra;
     }
 
-    public void setNguoiGiaoDich(String nguoiGiaoDich) {
-        this.nguoiGiaoDich = nguoiGiaoDich;
+    public void setHantra(String hantra) {
+        this.hantra = hantra;
     }
 
-    public String getGhiChuGiaoDich() {
-        return ghiChuGiaoDich;
+    public String getNguoigiaodich() {
+        return nguoigiaodich;
     }
 
-    public void setGhiChuGiaoDich(String ghiChuGiaoDich) {
-        this.ghiChuGiaoDich = ghiChuGiaoDich;
+    public void setNguoigiaodich(String nguoigiaodich) {
+        this.nguoigiaodich = nguoigiaodich;
     }
 
-    public String getThoiGianGiaoDich() {
-        return thoiGianGiaoDich;
+    public String getLoaigiaodich() {
+        return loaigiaodich;
     }
 
-    public void setThoiGianGiaoDich(String thoiGianGiaoDich) {
-        this.thoiGianGiaoDich = thoiGianGiaoDich;
+    public void setLoaigiaodich(String loaigiaodich) {
+        this.loaigiaodich = loaigiaodich;
     }
 
-    public double getLaiSuat() {
-        return laiSuat;
+    public String getGhichugiaodich() {
+        return ghichugiaodich;
     }
 
-    public void setLaiSuat(double laiSuat) {
-        this.laiSuat = laiSuat;
+    public void setGhichugiaodich(String ghichugiaodich) {
+        this.ghichugiaodich = ghichugiaodich;
     }
 
-    public String getTrangThai() {
-        return trangThai;
+    public String getThoigiangiaodich() {
+        return thoigiangiaodich;
     }
 
-    public void setTrangThai(String trangThai) {
-        this.trangThai = trangThai;
+    public void setThoigiangiaodich(String thoigiangiaodich) {
+        this.thoigiangiaodich = thoigiangiaodich;
     }
 
-    public String getLoaiGiaoDich() {
-        return loaiGiaoDich;
+    public long getLaisuat() {
+        return laisuat;
     }
 
-    public void setLoaiGiaoDich(String loaiGiaoDich) {
-        this.loaiGiaoDich = loaiGiaoDich;
+    public void setLaisuat(long laisuat) {
+        this.laisuat = laisuat;
+    }
+
+    public String getTrangthai() {
+        return trangthai;
+    }
+
+    public void setTrangthai(String trangthai) {
+        this.trangthai = trangthai;
     }
 }
