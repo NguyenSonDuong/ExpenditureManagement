@@ -9,8 +9,15 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.group1.LopCSDL.HoTroXuLyDataBase;
+import com.group1.LopCSDL.KeyDatabase;
 import com.group1.LopCSDL.LoaiChiTieu;
+import com.group1.LopCSDL.LopCreat_Time;
+import com.group1.LopCSDL.ThongTinChiTieu;
+import com.group1.LopCSDL.XuLyDatabase;
+import com.group1.dialog.ChiTieuDialog;
 import com.group1.expendituremanagement.R;
+import com.group1.server.XuLyServer;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -38,20 +45,18 @@ public class LoaiChiTieuAdapter extends BaseAdapter {
         return position;
     }
 
-    public int getRamdomIDColor(){
-        Random random = new Random();
+    public int getRamdomIDColor(int i){
         ArrayList<Integer> li = new ArrayList<>();
+        li.add(R.color.yellow);
         li.add(R.color.orange);
         li.add(R.color.purple);
         li.add(R.color.tile);
         li.add(R.color.dark_orange);
         li.add(R.color.purple_blue);
-        li.add(R.color.dark_yellow);
         li.add(R.color.green);
         li.add(R.color.pink);
         li.add(R.color.red);
-        li.add(R.color.yellow);
-        return li.get(random.nextInt(10));
+        return li.get(i);
     }
 
     @Override
@@ -69,11 +74,20 @@ public class LoaiChiTieuAdapter extends BaseAdapter {
         }else {
             viewHoder = (ViewHoder) convertView.getTag();
         }
-        LoaiChiTieu item = list.get(position);
+        final LoaiChiTieu item = list.get(position);
         viewHoder.tvNameType.setText(item.loaichitieu);
-        viewHoder.tvMoney.setText(item.sotien+"");
+        viewHoder.tvMoney.setText(XuLyServer.formatMoney(item.sotien) +" đ");
         viewHoder.tvTime.setText(item.end_buy_time);
-        viewHoder.lnMainShow.setBackgroundColor(context.getResources().getColor(getRamdomIDColor()));
+        viewHoder.lnMainShow.setBackgroundColor(context.getResources().getColor(getRamdomIDColor(position)));
+        viewHoder.imgShow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                XuLyDatabase xuLyDatabase = new XuLyDatabase(context, KeyDatabase.DATABASENAME_INFOR,null,1);
+                ArrayList<ThongTinChiTieu> list = HoTroXuLyDataBase.layDLChiTieuByLoaiChiTieu(xuLyDatabase,item.loaichitieu, LopCreat_Time.ngayThang());
+                ChiTieuDialog chiTieuDialog = new ChiTieuDialog(context,context,list);
+                chiTieuDialog.show();
+            }
+        });
         return convertView;
     }
     class ViewHoder{

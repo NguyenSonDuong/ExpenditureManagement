@@ -17,6 +17,7 @@ import com.group1.LopCSDL.KeyDatabase;
 import com.group1.LopCSDL.LopCreat_Time;
 import com.group1.LopCSDL.XuLyDatabase;
 import com.group1.expendituremanagement.R;
+import com.group1.server.XuLyServer;
 
 public class Fragment_Thong_Ke_Chi_Tieu extends Fragment {
 
@@ -58,9 +59,9 @@ public class Fragment_Thong_Ke_Chi_Tieu extends Fragment {
         sumChiTieuThang = HoTroXuLyDataBase.getChiTieuTheoThang(xuLyDatabase, LopCreat_Time.thangNamHienTai());
         sumChiTieuNam = HoTroXuLyDataBase.getChiTieuTheoNam(xuLyDatabase, LopCreat_Time.NamHienTai());
 
-        tvSoTienNgay.setText(String.valueOf(sumChiTieuNgay));
-        tvSoTienThang.setText(String.valueOf(sumChiTieuThang));
-        tvSoTienNam.setText(String.valueOf(sumChiTieuNam));
+        tvSoTienNgay.setText(XuLyServer.formatMoney(sumChiTieuNgay));
+        tvSoTienThang.setText(XuLyServer.formatMoney(sumChiTieuThang));
+        tvSoTienNam.setText(XuLyServer.formatMoney(sumChiTieuNam));
     }
 
 

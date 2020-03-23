@@ -27,6 +27,7 @@
                 android:textSize="20sp"
                 android:textColor="#FFF"
                 android:textStyle="bold"
+                android:id="@+id/tvNowTime"
                 android:gravity="center"
                 android:text="20/04/2020"/>
             <TextView
@@ -35,6 +36,7 @@
                 android:layout_weight="1"
                 android:textColor="#FFF"
                 android:gravity="center"
+                android:id="@+id/tvCountMoney"
                 android:text="1.900.000 đ"/>
         </LinearLayout>
         <ImageView

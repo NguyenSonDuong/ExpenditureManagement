@@ -16,6 +16,7 @@ import com.group1.LopCSDL.KeyDatabase;
 import com.group1.LopCSDL.LopCreat_Time;
 import com.group1.LopCSDL.XuLyDatabase;
 import com.group1.expendituremanagement.R;
+import com.group1.server.XuLyServer;
 
 public class Fragment_Thong_Ke_Vay_Tra extends Fragment {
     Context context;
@@ -65,12 +66,12 @@ public class Fragment_Thong_Ke_Vay_Tra extends Fragment {
         sumThangChoVay = HoTroXuLyDataBase.getTraTheoThang(xuLyDatabase, LopCreat_Time.thangNamHienTai());
         sumNamChoVay = HoTroXuLyDataBase.getTraTheoNam(xuLyDatabase, LopCreat_Time.NamHienTai());
 
-        tvSoTienVayNgay.setText(sumNgayVay+"");
-        tvSoTienVayThang.setText(sumThangVay+"");
-        tvSoTienVayNam.setText(sumNamVay+"");
+        tvSoTienVayNgay.setText(XuLyServer.formatMoney(sumNgayVay)+" đ");
+        tvSoTienVayThang.setText(XuLyServer.formatMoney(sumThangVay)+" đ");
+        tvSoTienVayNam.setText(XuLyServer.formatMoney(sumNamVay)+" đ");
 
-        tvSoTienChoVayNgay.setText(sumNgayChoVay+"");
-        tvSoTienChoVayThang.setText(sumThangChoVay+"");
-        tvSoTienChoVayNam.setText(sumNamChoVay+"");
+        tvSoTienChoVayNgay.setText(XuLyServer.formatMoney(sumNgayChoVay)+" đ");
+        tvSoTienChoVayThang.setText(XuLyServer.formatMoney(sumThangChoVay)+" đ");
+        tvSoTienChoVayNam.setText(XuLyServer.formatMoney(sumNamChoVay)+" đ");
     }
 }

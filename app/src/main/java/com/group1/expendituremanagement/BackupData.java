@@ -40,7 +40,7 @@ public class BackupData extends AppCompatActivity {
                 Object objChiTieu = XuLyServer.backupChiTieu(BackupData.this,XuLyServer.convertChiTieuToJson(XuLyServer.getTokenOffline(BackupData.this),listChiTieu));
                 Object obj = XuLyServer.backupVay(BackupData.this,XuLyServer.convertVayTraToJson(XuLyServer.getTokenOffline(BackupData.this),listVayTra));
                 if(objChiTieu == null || obj == null){
-                    Toast.makeText(BackupData.this, "Lỗi kết nối server", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BackupData.this, "Lỗi kết nối server " , Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(obj instanceof XuLyServer.ReponsiveSuccessfull){

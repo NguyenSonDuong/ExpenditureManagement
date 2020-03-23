@@ -23,6 +23,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
@@ -37,8 +38,11 @@ import com.group1.LopCSDL.KeyDatabase;
 import com.group1.LopCSDL.LopCreat_Time;
 import com.group1.LopCSDL.ThongTinVayTra;
 import com.group1.LopCSDL.XuLyDatabase;
+import com.group1.adapter.ChiTieuAdapter;
+import com.group1.adapter.VayAdapter;
 import com.group1.server.XuLyServer;
 
+import java.security.Key;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -59,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
     FragmentInformationUser fragmentInformationUser;
     Fragment_Thong_Ke_Chi_Tieu fragment_thong_ke_chi_tieu;
     Fragment_Thong_Ke_Vay_Tra fragment_thong_ke_vay_tra;
+    private boolean iclick = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,7 +110,20 @@ public class MainActivity extends AppCompatActivity {
         ivAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(iclick) {
+                    iclick = false;
+                    return;
+                };
                 addFragment(fragmentShowInfor);
+
+            }
+        });
+        ivAdd.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                iclick = true;
+                Toast.makeText(MainActivity.this, "Đụ mé", Toast.LENGTH_SHORT).show();
+                return false;
             }
         });
         btnAddVay.setOnClickListener(new View.OnClickListener() {
@@ -148,6 +167,16 @@ public class MainActivity extends AppCompatActivity {
 
         XuLyDatabase xuLyDatabase = new XuLyDatabase(this, KeyDatabase.DATABASENAME_INFOR,null,1);
         ArrayList<ThongTinVayTra> list = HoTroXuLyDataBase.layDLVayTra(xuLyDatabase);
+
+
+
+        View view = navigationView.getHeaderView(0);
+        TextView tvTen = view.findViewById(R.id.tvTen);
+        TextView tvNgaySinh = view.findViewById(R.id.tvNgaySinh);
+        TextView tvTongTien = view.findViewById(R.id.tvTongTien);
+        tvTen.setText(XuLyServer.getNicknameOffline(this));
+        tvNgaySinh.setText(HoTroXuLyDataBase.getInforUser(new XuLyDatabase(this, KeyDatabase.DATABASENAME,null,1),XuLyServer.getNicknameOffline(this)).getNgaySinh());
+        tvTongTien.setText(XuLyServer.formatMoney(HoTroXuLyDataBase.getChiTieuTheoNgay(new XuLyDatabase(this, KeyDatabase.DATABASENAME_INFOR,null,1),LopCreat_Time.ngayThang()))+" đ");
     }
 
     private void swichFragment(Fragment fragment){

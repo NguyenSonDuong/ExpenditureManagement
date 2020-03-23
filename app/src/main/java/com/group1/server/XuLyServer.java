@@ -24,6 +24,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.concurrent.ExecutionException;
 
@@ -237,7 +238,7 @@ public class XuLyServer {
     }
     public static Object backupChiTieu(Context context, BackupChiTieu.BackupChiTieuRequestClass data){
         try{
-            String url = HOST+BACKUP_VAY;
+            String url = HOST+BACKUP_CHITIEU;
             Moshi moshi = new Moshi.Builder().build();
             JsonAdapter<BackupChiTieu.BackupChiTieuRequestClass> jsonAdapter = moshi.adapter(BackupChiTieu.BackupChiTieuRequestClass.class);
             String postData = jsonAdapter.toJson(data);
@@ -296,7 +297,7 @@ public class XuLyServer {
     public static ArrayList<ThongTinVayTra> synchVay(Context context,String token){
         ArrayList<ThongTinVayTra> listVay = new ArrayList<>();
         try{
-            String url = HOST+GET_CHITIEU;
+            String url = HOST+GET_VAY;
             String postData = "token="+token;
             String json = Post(context,url,postData);
             Moshi moshi = new Moshi.Builder().build();
@@ -335,7 +336,7 @@ public class XuLyServer {
             data.sotiendatra = item.sotiendatra;
             data.hantra = item.hantra;
             data.nguoigiaodich = item.nguoigiaodich;
-            data.loaigiaodich = item.nguoigiaodich;
+            data.loaigiaodich = item.loaigiaodich;
             data.ghichugiaodich = item.ghichugiaodich;
             data.thoigiangiaodich = item.thoigiangiaodich;
             data.laisuat = item.laisuat;
@@ -367,6 +368,7 @@ public class XuLyServer {
         return chiTieuRequestClass;
     }
 
+    // các hàm hỗ trợ
     public static String getNicknameOffline(Context context){
         SharedPreferences sharedPreferences = context.getSharedPreferences(KeyDatabase.LOGIN_INFOR_NAMEFILE,Context.MODE_PRIVATE);
         String token = sharedPreferences.getString(KeyDatabase.LOGIN_OFFLINE_NICKNAME,"");
@@ -391,6 +393,21 @@ public class XuLyServer {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(key,data);
         editor.commit();
+    }
+    public static String formatMoney(long money){
+        String va = money+"";
+        char[] ne = va.toCharArray();
+        int dem = 0;
+        String a="";
+        for(int i=ne.length-1;i>=0;i--){
+            if(dem>=2){
+                a +=ne[i]+".";
+                dem=0;
+            }
+            a +=ne[i];
+            dem++;
+        }
+        return new StringBuffer(a).reverse().toString();
     }
     // Lớp reponsive của Register
     public static class RegisterReponsiveClass {
@@ -500,13 +517,13 @@ public class XuLyServer {
     }
     // Synch chitieu
     public static class SynchChiTieu{
-        public class ReponsiveSynchChiTieu
+        public static class ReponsiveSynchChiTieu
         {
             public Datum[] data ;
             public String create_time ;
         }
 
-        public class Datum
+        public static class Datum
         {
             public String ID ;
             public String sotien ;

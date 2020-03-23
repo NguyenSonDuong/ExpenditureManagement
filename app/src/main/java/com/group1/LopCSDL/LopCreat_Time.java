@@ -11,6 +11,7 @@ public class LopCreat_Time {
     public static String ngayThang(){
         calendar  = Calendar.getInstance();
         calendar.setTimeZone(TimeZone.getTimeZone("Asia/Ho_Chi_Minh"));
+
         int nam = calendar.get(Calendar.YEAR);
         int thang = calendar.get(Calendar.MONTH)+1 ;
         int ngay = calendar.get(Calendar.DATE);
@@ -37,7 +38,9 @@ public class LopCreat_Time {
         return namHienTai;
     }
 
+    public static void chang(){
 
+    }
 
     public static String gioPhutGiay(){
         calendar  = Calendar.getInstance();

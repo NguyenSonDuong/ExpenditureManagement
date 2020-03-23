@@ -44,6 +44,7 @@ public class SyncData extends AppCompatActivity {
         ArrayList<ThongTinVayTra> vayTraArrayList = XuLyServer.synchVay(context,XuLyServer.getTokenOffline(context));
         XuLyDatabase xuLyDatabase = new XuLyDatabase(context, KeyDatabase.DATABASENAME_INFOR,null,1);
         if(chiTieuArrayList.size() >1){
+            xuLyDatabase.khongTraKQ("DELETE FROM "+ KeyDatabase.TABLENAME_CHITIEU);
             int dem =0;
             int error =0;
             for(ThongTinChiTieu item : chiTieuArrayList){
@@ -59,6 +60,7 @@ public class SyncData extends AppCompatActivity {
             Toast.makeText(context, "Không có dữ liệu chi tiêu để đồng bộ", Toast.LENGTH_SHORT).show();
         }
         if(vayTraArrayList.size() >1){
+            xuLyDatabase.khongTraKQ("DELETE FROM "+ KeyDatabase.TABLENAME_VAY);
             int dem =0;
             int error =0;
             for(ThongTinVayTra item : vayTraArrayList){

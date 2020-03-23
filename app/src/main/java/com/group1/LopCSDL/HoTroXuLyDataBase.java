@@ -184,6 +184,7 @@ public class HoTroXuLyDataBase {
         }
         return arrayList;
     }
+    // lấy thông tin từ database theo loại giao dịch
     public static ArrayList<ThongTinChiTieu> layDLChiTieuByLoaiChiTieu(XuLyDatabase xuLyDatabase, String loaigiaodich, String date){
         ArrayList<ThongTinChiTieu> arrayList = new ArrayList<>();
         String query = "SELECT * FROM "+KeyDatabase.TABLENAME_CHITIEU + " WHERE loaiGiaoDich = '"+loaigiaodich+"' AND thoiGianGiaoDich  >= Datetime('"+date+" 00:00:00') and thoiGianGiaoDich <= Datetime('"+date+" 23:59:59')";
@@ -199,6 +200,27 @@ public class HoTroXuLyDataBase {
             thongTinChiTieuu.setSoLuong(cursor.getInt(6));
             arrayList.add(thongTinChiTieuu);
         }
+        return arrayList;
+    }
+    public static ArrayList<ThongTinVayTra> layDLVayTraLoai(XuLyDatabase xuLyDatabase, String loaigiaodich, String date){
+        ArrayList<ThongTinVayTra> arrayList = new ArrayList<>();
+        String query = "SELECT * FROM "+KeyDatabase.TABLENAME_VAY + " WHERE loaiGiaoDich = '"+loaigiaodich+"' AND thoiGianGiaoDich  >= Datetime('"+date+" 00:00:00') and thoiGianGiaoDich <= Datetime('"+date+" 23:59:59')";
+        Cursor cursor = xuLyDatabase.traVeKQ(query);
+        while (cursor.moveToNext()){
+            ThongTinVayTra thongTinVayTraa = new ThongTinVayTra();
+            thongTinVayTraa.setId(cursor.getInt(0));
+            thongTinVayTraa.setSotienvay((long) cursor.getDouble(1));
+            thongTinVayTraa.setSotiendatra((long) cursor.getDouble(2));
+            thongTinVayTraa.setHantra(cursor.getString(3));
+            thongTinVayTraa.setNguoigiaodich(cursor.getString(4));
+            thongTinVayTraa.setLoaigiaodich(cursor.getString(5));
+            thongTinVayTraa.setGhichugiaodich(cursor.getString(6));
+            thongTinVayTraa.setThoigiangiaodich(cursor.getString(7));
+            thongTinVayTraa.setLaisuat((long) cursor.getDouble(8));
+            thongTinVayTraa.setTrangthai(cursor.getString(9));
+            arrayList.add(thongTinVayTraa);
+        }
+
         return arrayList;
     }
 
@@ -352,10 +374,9 @@ public class HoTroXuLyDataBase {
             for (ThongTinChiTieu item2 : listDS){
                 money += item2.getSoTien();
                 try {
-                    Date date1 = new SimpleDateFormat("YYYY-MM-DD HH:MM:SS").parse(item2.getThoiGianGiaoDich());
-                    loaiChiTieu.end_buy_time = String.format("%02d",date1.getHours()) +":"+ String.format("%02d",date1.getMinutes()) +":"+ String.format("%02d",date1.getSeconds());
-                } catch (ParseException e) {
-                    e.printStackTrace();
+                    loaiChiTieu.end_buy_time = item2.getThoiGianGiaoDich().split(" ")[1];
+                } catch (Exception e) {
+                    Log.d("TAG", "getThongLoaiChiTieu: "+e.getMessage());
                 }
 
             }
@@ -368,13 +389,9 @@ public class HoTroXuLyDataBase {
 
     public static ArrayList<ThongTinVayTra> layDLVayTra(XuLyDatabase xuLyDatabase){
         ArrayList<ThongTinVayTra> arrayList = new ArrayList<>();
-
         Cursor cursor = xuLyDatabase.traVeKQ("SELECT * FROM "+KeyDatabase.TABLENAME_VAY);
-
         while (cursor.moveToNext()){
             ThongTinVayTra thongTinVayTraa = new ThongTinVayTra();
-
-
             thongTinVayTraa.setId(cursor.getInt(0));
             thongTinVayTraa.setSotienvay((long) cursor.getDouble(1));
             thongTinVayTraa.setSotiendatra((long) cursor.getDouble(2));
